@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package eg.java.net.web.jspx.ui.controls.html.elements.dataitem;
 
@@ -12,101 +12,83 @@ import eg.java.net.web.jspx.ui.pages.Page;
  * @author Amr.ElAdawy
  *
  */
-public class DataPK extends HiddenGenericWebControl
-{
+public class DataPK extends HiddenGenericWebControl {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5591469898545945631L;
-	public static String SEQ_TYPE = "seq";
-	public static String SQL_TYPE = "sql";
-	public static String IDENTITY_TYPE = "identity";
-	public static String TRIGGER = "trigger";
+    /**
+     *
+     */
+    private static final long serialVersionUID = 5591469898545945631L;
+    public static String SEQ_TYPE = "seq";
+    public static String SQL_TYPE = "sql";
+    public static String IDENTITY_TYPE = "identity";
+    public static String TRIGGER = "trigger";
+    protected static String NameKey = "name";
+    @JspxAttribute
+    protected String type = "type";
+    @JspxAttribute
+    protected String sql = "sql";
+    /**
+     * PK can have a default value to be used.
+     */
+    @JspxAttribute
+    protected String defaultvalue = "defaultvalue";
+    @JspxAttribute
+    private final String seq = "sequence";
 
-	/**
-	 * @param tagName
-	 */
-	public DataPK()
-	{
-		super(TagFactory.DataPK);
-	}
+    /**
+     * @param tagName
+     */
+    public DataPK() {
+        super(TagFactory.DataPK);
+    }
 
-	/**
-	 * @param tagName
-	 * @param page
-	 */
-	public DataPK(Page page)
-	{
-		super(TagFactory.DataPK, page);
-	}
+    /**
+     * @param tagName
+     * @param page
+     */
+    public DataPK(Page page) {
+        super(TagFactory.DataPK, page);
+    }
 
-	protected static String NameKey = "name";
+    public String getName() {
+        return getAttributeValue(NameKey);
+    }
 
-	public String getName()
-	{
-		return getAttributeValue(NameKey);
-	}
+    public void setName(String name) {
+        setAttributeValue(NameKey, name);
+    }
 
-	public void setName(String name)
-	{
-		setAttributeValue(NameKey, name);
-	}
+    public String getSequence() {
+        return getAttributeValue(seq);
+    }
 
-	@JspxAttribute
-	private String seq = "sequence";
+    public void setSequence(String sequnce) {
+        setAttributeValue(seq, sequnce);
+    }
 
-	public void setSequence(String sequnce)
-	{
-		setAttributeValue(seq, sequnce);
-	}
+    public String getType() {
+        return getAttributeValue(type);
+    }
 
-	public String getSequence()
-	{
-		return getAttributeValue(seq);
-	}
+    public void setType(String typeValue) {
+        setAttributeValue(type, typeValue);
+    }
 
-	@JspxAttribute
-	protected String type = "type";
+    public String getSql() {
+        return getAttributeValue(sql);
+    }
 
-	public String getType()
-	{
-		return getAttributeValue(type);
-	}
+    public void setSql(String sqlValue) {
+        setAttributeValue(sql, sqlValue);
+    }
 
-	public void setType(String typeValue)
-	{
-		setAttributeValue(type, typeValue);
-	}
+    public String getDefaultValue() {
+        return getAttributeValue(defaultvalue);
+    }
 
-	@JspxAttribute
-	protected String sql = "sql";
+    public void setDefaultValue(String defaultvalueValue) {
+        setAttributeValue(defaultvalue, defaultvalueValue);
+    }
 
-	public String getSql()
-	{
-		return getAttributeValue(sql);
-	}
 
-	public void setSql(String sqlValue)
-	{
-		setAttributeValue(sql, sqlValue);
-	}
-
-	/**
-	 * PK can have a default value to be used.
-	 */
-	@JspxAttribute
-	protected String defaultvalue = "defaultvalue";
-
-	public String getDefaultValue()
-	{
-		return getAttributeValue(defaultvalue);
-	}
-
-	public void setDefaultValue(String defaultvalueValue)
-	{
-		setAttributeValue(defaultvalue, defaultvalueValue);
-	}
-	
-	
 }

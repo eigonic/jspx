@@ -184,9 +184,7 @@ public class XmlParser extends AbstractXmlParser
 
 	public XmlParser(Reader reader) throws IOException
 	{
-		// this(reader, Runtime.getRuntime().freeMemory() >= 1048576 ? 8192 :
-		// 1);
-		this(reader, 1024 * 1024);
+        this(reader, 1024 * 1024);
 	}
 
 	public XmlParser(Reader reader, int bufSize) throws IOException
@@ -336,9 +334,7 @@ public class XmlParser extends AbstractXmlParser
 			// [Jan 15, 2011 4:31:45 PM] [Amr.ElAdawy] [matching the tag name is case in sensitive]
 			if (qName.equalsIgnoreCase(name))
 				break;
-			// if (qName.equals(name))
-			// break;
-			if (!relaxed)
+            if (!relaxed)
 				throw new DefaultParserException("StartTag <" + qName + "> does not match end tag </" + name + ">", null);
 			current = current.parent;
 		}
@@ -378,11 +374,8 @@ public class XmlParser extends AbstractXmlParser
 
 	StartTag parseStartTag() throws IOException
 	{
-		// current = new StartTag (current, reader, relaxed);
 
-		// prefixMap = parent == null ? new PrefixMap () : parent.prefixMap;
-
-		String qname = readName();
+        String qname = readName();
 
 		// System.out.println ("name: ("+name+")");
 
@@ -479,7 +472,7 @@ public class XmlParser extends AbstractXmlParser
 		// [Nov 5, 2013 4:44:43 AM] [Amr.ElAdawy] [fix issue detected by find bug]
 		code = code.replace("&lt;", "<").replace("&gt;", ">").replace("&apos;", "'").replace("&quot;", "\"").replace("&;", "").replace("&amp;", "&");
 		buf.append(code);
-		if (code.trim().equals(""))
+		if (code.trim().isEmpty())
 			return Xml.WHITESPACE;
 		return Xml.TEXT;
 	}
@@ -599,7 +592,7 @@ public class XmlParser extends AbstractXmlParser
 				match = true;
 				int ch = nextChar;
 				int j = 0;
-				StringBuffer subBuf = new StringBuffer("");
+				StringBuffer subBuf = new StringBuffer();
 				for (j = 0; j < lowerCase.length(); j++)
 				{
 					if (ch != lowerCase.charAt(j) && ch == uperCase.charAt(j))
@@ -621,9 +614,7 @@ public class XmlParser extends AbstractXmlParser
 				}
 
 			}
-			// else
-			// i = 0;
-			if (match)
+            if (match)
 				return type;
 
 			readChar();
@@ -631,10 +622,7 @@ public class XmlParser extends AbstractXmlParser
 			if (i == endString.length())
 				break;
 		}
-		// if(buf.length() > endString.length())
-		// buf = new StringBuffer(buf.toString().substring(0,
-		// buf.length()-endString.length()));
-		return type;
+        return type;
 	}
 
 	/**

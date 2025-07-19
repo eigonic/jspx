@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package eg.java.net.web.jspx.ui.controls.html.w3;
 
@@ -13,37 +13,33 @@ import eg.java.net.web.jspx.ui.pages.Page;
  * @author amr.eladawy
  *
  */
-public class Meta extends GenericWebControl
-{
+public class Meta extends GenericWebControl {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -571603639179045074L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = -571603639179045074L;
 
-	/**
-	 * @param tagName
-	 */
-	public Meta()
-	{
-		super(TagFactory.Meta);
-		isContentControl = false;
-	}
+    /**
+     * @param tagName
+     */
+    public Meta() {
+        super(TagFactory.Meta);
+        isContentControl = false;
+    }
 
-	/**
-	 * @param tagName
-	 * @param page
-	 */
-	public Meta(Page page)
-	{
-		super(TagFactory.Meta, page);
-		isContentControl = false;
-	}
+    /**
+     * @param tagName
+     * @param page
+     */
+    public Meta(Page page) {
+        super(TagFactory.Meta, page);
+        isContentControl = false;
+    }
 
-	@Override
-	protected void loadInternalAttributes()
-	{
-		super.loadInternalAttributes();
-		internalAttribtes.remove(content);
-	}
+    @Override
+    protected void loadInternalAttributes() {
+        super.loadInternalAttributes();
+        internalAttribtes.remove(content);
+    }
 }

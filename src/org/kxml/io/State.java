@@ -21,8 +21,6 @@ public class State
 
 		this.prev = prev;
 		this.prefixMap = prefixMap;
-		// this.namespace = namespace;
-		// this.name = name;
-		this.tag = tag;
+        this.tag = tag;
 	}
 }

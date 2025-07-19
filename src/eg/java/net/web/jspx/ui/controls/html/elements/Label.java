@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package eg.java.net.web.jspx.ui.controls.html.elements;
 
@@ -11,59 +11,49 @@ import eg.java.net.web.jspx.ui.pages.Page;
 
 /**
  * @author amr.eladawy
- * 
+ *
  */
-public class Label extends StringLiteralContainer implements ValueHolder
-{
+public class Label extends StringLiteralContainer implements ValueHolder {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5732138566723834745L;
-	private static String forKey = "for";
+    /**
+     *
+     */
+    private static final long serialVersionUID = 5732138566723834745L;
+    private String valueBinding;
 
-	public Label()
-	{
-		super(TagFactory.Label);
-	}
+    public Label() {
+        super(TagFactory.Label);
+    }
 
-	public Label(Page page)
-	{
-		super(TagFactory.Label, page);
-	}
+    public Label(Page page) {
+        super(TagFactory.Label, page);
+    }
 
-	public void setFor(String forValue)
-	{
-		setAttributeValue(forKey, forValue);
-	}
+    public void setFor(String forValue) {
+        String forKey = "for";
+        setAttributeValue(forKey, forValue);
+    }
 
-	public String getValue()
-	{
-		return getText();
-	}
+    public String getValue() {
+        return getText();
+    }
 
-	public void setValue(String valueString)
-	{
-		if (page.getPageStatus() != Page.PagePostBackData)
-			setText(valueString);
+    public void setValue(String valueString) {
+        if (page.getPageStatus() != Page.PagePostBackData)
+            setText(valueString);
 
-	}
+    }
 
-	private String valueBinding;
+    public String getValueBinding() {
+        if (StringUtility.isNullOrEmpty(valueBinding)) {
+            String value = getText();
+            if (StringUtility.containsEL(value))
+                valueBinding = value;
+        }
+        return valueBinding;
+    }
 
-	public String getValueBinding()
-	{
-		if (StringUtility.isNullOrEmpty(valueBinding))
-		{
-			String value = getText();
-			if (StringUtility.containsEL(value))
-				valueBinding = value;
-		}
-		return valueBinding;
-	}
-
-	public void setValueBinding(String valueBinding)
-	{
-		this.valueBinding = valueBinding;
-	}
+    public void setValueBinding(String valueBinding) {
+        this.valueBinding = valueBinding;
+    }
 }

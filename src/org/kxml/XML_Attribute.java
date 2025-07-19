@@ -61,6 +61,6 @@ public class XML_Attribute
 
 	public String toString()
 	{
-		return (!namespace.equals("") ? ("{" + namespace + "}" + key) : key) + "=\"" + value + "\"";
+		return (!namespace.isEmpty() ? ("{" + namespace + "}" + key) : key) + "=\"" + value + "\"";
 	}
 }

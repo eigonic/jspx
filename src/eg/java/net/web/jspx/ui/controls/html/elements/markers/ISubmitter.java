@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package eg.java.net.web.jspx.ui.controls.html.elements.markers;
 
@@ -9,7 +9,6 @@ package eg.java.net.web.jspx.ui.controls.html.elements.markers;
  * @author amr.eladawy
  *
  */
-public interface ISubmitter
-{
+public interface ISubmitter {
 
 }

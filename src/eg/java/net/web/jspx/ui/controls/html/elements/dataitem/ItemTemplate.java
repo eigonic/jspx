@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package eg.java.net.web.jspx.ui.controls.html.elements.dataitem;
 
@@ -15,78 +15,66 @@ import eg.java.net.web.jspx.ui.pages.Page;
 
 /**
  * Control that is containing Template for Item within DataColumn.
- * 
+ *
  * @author amr.eladawy
- * 
+ *
  */
-public class ItemTemplate extends HiddenGenericWebControl
-{
+public class ItemTemplate extends HiddenGenericWebControl {
 
-	private static final long serialVersionUID = -6837715425525722654L;
+    private static final long serialVersionUID = -6837715425525722654L;
+    /**
+     * boolean wheather to change id of the controls inside the item template.
+     */
+    @JspxAttribute
+    protected static String overrideId = "overrideId";
+    protected String var;
+    protected Object row;
+    protected int rowIndex;
 
-	protected String var;
+    public ItemTemplate() {
+        super(TagFactory.ItemTemplate);
+    }
 
-	protected Object row;
+    public ItemTemplate(Page page) {
+        super(TagFactory.ItemTemplate, page);
+    }
 
-	public ItemTemplate()
-	{
-		super(TagFactory.ItemTemplate);
-	}
+    @Override
+    /**
+     * overridden to make the custom render of the column.
+     */
+    public void render(RenderPrinter outputStream) throws Exception {
+        if (!isRendered())
+            return;
+        if (getOverrideId())
+            setIdSuffix(Integer.toString(rowIndex));
+        // [Sep 11, 2013 6:10:23 PM] [amr.eladawy] [add row index to jxel]
+        page.getPageJEXLContext().set("jspxRowIndex", rowIndex);
+        renderChildren(outputStream);
+    }
 
-	public ItemTemplate(Page page)
-	{
-		super(TagFactory.ItemTemplate, page);
-	}
+    @Override
+    /**
+     * set the parent (DataColumn) to has an Item Template
+     */
+    public WebControl clone(WebControl parent, Page page, ISubmitter submitter, IAjaxSubmitter ajaxSubmitter) {
+        WebControl me = super.clone(parent, page, submitter, ajaxSubmitter);
+        ((DataColumn) me.getParent()).setHasItemTemplate(true);
+        return me;
+    }
 
-	@Override
-	/**
-	 * overridden to make the custom render of the column.
-	 */
-	public void render(RenderPrinter outputStream) throws Exception
-	{
-		if (!isRendered())
-			return;
-		if (getOverrideId())
-			setIdSuffix(Integer.toString(rowIndex));
-		// [Sep 11, 2013 6:10:23 PM] [amr.eladawy] [add row index to jxel]
-		page.getPageJEXLContext().set("jspxRowIndex", rowIndex);
-		renderChildren(outputStream);
-	}
+    public void setRowIndex(int rowIndex) {
+        this.rowIndex = rowIndex;
+    }
 
-	@Override
-	/**
-	 * set the parent (DataColumn) to has an Item Template
-	 */
-	public WebControl clone(WebControl parent, Page page, ISubmitter submitter, IAjaxSubmitter ajaxSubmitter)
-	{
-		WebControl me = super.clone(parent, page, submitter, ajaxSubmitter);
-		((DataColumn) me.getParent()).setHasItemTemplate(true);
-		return me;
-	}
+    public boolean getOverrideId() {
+        String val = getAttribute(overrideId.toLowerCase()).getValue(page);
+        val = StringUtility.isNullOrEmpty(val) ? TRUE : val;
 
-	protected int rowIndex;
+        return TRUE.equalsIgnoreCase(val);
+    }
 
-	public void setRowIndex(int rowIndex)
-	{
-		this.rowIndex = rowIndex;
-	}
-
-	/**
-	 * boolean wheather to change id of the controls inside the item template.
-	 */
-	@JspxAttribute
-	protected static String overrideId = "overrideId";
-
-	public void setOverrideId(boolean overrideIdVal)
-	{
-		setAttributeBooleanValue(overrideId, overrideIdVal);
-	}
-
-	public boolean getOverrideId()
-	{
-		String val = getAttribute(overrideId.toLowerCase()).getValue(page);
-		val = StringUtility.isNullOrEmpty(val) ? TRUE : val;
-
-		return TRUE.equalsIgnoreCase(val);
-	}
+    public void setOverrideId(boolean overrideIdVal) {
+        setAttributeBooleanValue(overrideId, overrideIdVal);
+    }
 }

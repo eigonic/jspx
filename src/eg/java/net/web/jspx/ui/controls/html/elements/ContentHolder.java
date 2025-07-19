@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package eg.java.net.web.jspx.ui.controls.html.elements;
 
@@ -10,38 +10,34 @@ import eg.java.net.web.jspx.ui.pages.Page;
 
 /**
  * @author amr.eladawy
- * 
+ *
  */
-public class ContentHolder extends GenericWebControl
-{
+public class ContentHolder extends GenericWebControl {
 
-	private static final long serialVersionUID = 2717934129766617293L;
+    private static final long serialVersionUID = 2717934129766617293L;
 
-	/**
-	 * @param tagName
-	 */
-	public ContentHolder()
-	{
-		super(TagFactory.ContentHolder);
-	}
+    /**
+     * @param tagName
+     */
+    public ContentHolder() {
+        super(TagFactory.ContentHolder);
+    }
 
-	/**
-	 * @param tagName
-	 * @param page
-	 */
-	public ContentHolder(Page page)
-	{
-		super(TagFactory.ContentHolder, page);
-	}
+    /**
+     * @param tagName
+     * @param page
+     */
+    public ContentHolder(Page page) {
+        super(TagFactory.ContentHolder, page);
+    }
 
-	/**
-	 * overridden to change the tag name before rendering.
-	 */
-	@Override
-	public void render(RenderPrinter outputStream) throws Exception
-	{
-		tagName = TagFactory.Span;
-		super.render(outputStream);
-	}
+    /**
+     * overridden to change the tag name before rendering.
+     */
+    @Override
+    public void render(RenderPrinter outputStream) throws Exception {
+        tagName = TagFactory.Span;
+        super.render(outputStream);
+    }
 
 }

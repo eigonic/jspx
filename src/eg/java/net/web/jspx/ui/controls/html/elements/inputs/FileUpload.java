@@ -1,87 +1,69 @@
 /**
- * 
+ *
  */
 package eg.java.net.web.jspx.ui.controls.html.elements.inputs;
 
-import org.apache.commons.fileupload.FileItem;
-
 import eg.java.net.web.jspx.ui.controls.html.elements.Input;
+import org.apache.commons.fileupload.FileItem;
 
 /**
  * @author amr.eladawy
- * 
+ *
  */
-public class FileUpload extends Input
-{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -3828599920593199938L;
+public class FileUpload extends Input {
+    /**
+     *
+     */
+    private static final long serialVersionUID = -3828599920593199938L;
+    protected String fileName;
+    protected String fileFullName;
+    protected String fileType;
+    protected byte[] fileData;
+    protected FileItem fileItem;
 
-	public FileUpload()
-	{
-		super();
-		setType(Input.File);
-	}
+    public FileUpload() {
+        super();
+        setType(Input.File);
+    }
 
-	protected String fileName;
+    public FileItem getFileItem() {
+        return fileItem;
+    }
 
-	protected String fileFullName;
+    public void setFileItem(FileItem fileItem) {
+        this.fileItem = fileItem;
+    }
 
-	protected String fileType;
+    public String getFileFullName() {
+        return fileFullName;
+    }
 
-	protected byte[] fileData;
+    public void setFileFullName(String fileFullName) {
+        this.fileFullName = fileFullName;
+    }
 
-	protected FileItem fileItem;
+    public String getFileName() {
+        return fileName;
+    }
 
-	public FileItem getFileItem()
-	{
-		return fileItem;
-	}
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
-	public void setFileItem(FileItem fileItem)
-	{
-		this.fileItem = fileItem;
-	}
+    public String getFileType() {
+        return fileType;
+    }
 
-	public String getFileFullName()
-	{
-		return fileFullName;
-	}
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
 
-	public void setFileFullName(String fileFullName)
-	{
-		this.fileFullName = fileFullName;
-	}
+    public byte[] getFileData() {
+        return fileData;
+    }
 
-	public String getFileName()
-	{
-		return fileName;
-	}
-
-	public void setFileName(String fileName)
-	{
-		this.fileName = fileName;
-	}
-
-	public String getFileType()
-	{
-		return fileType;
-	}
-
-	public void setFileType(String fileType)
-	{
-		this.fileType = fileType;
-	}
-
-	public byte[] getFileData()
-	{
-		return fileData;
-	}
-
-	public void setFileData(byte[] fileData)
-	{
-		this.fileData = fileData;
-	}
+    public void setFileData(byte[] fileData) {
+        this.fileData = fileData;
+    }
 
 }

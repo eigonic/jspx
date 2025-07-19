@@ -1,10 +1,7 @@
 /**
- * 
+ *
  */
 package eg.java.net.web.jspx.ui.controls.html.elements.dataitem;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import eg.java.net.web.jspx.engine.parser.TagFactory;
 import eg.java.net.web.jspx.engine.util.StringUtility;
@@ -15,146 +12,123 @@ import eg.java.net.web.jspx.ui.controls.html.elements.markers.IAjaxSubmitter;
 import eg.java.net.web.jspx.ui.controls.html.elements.markers.ISubmitter;
 import eg.java.net.web.jspx.ui.pages.Page;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author ahmed.abdelaal
- * 
+ *
  */
-public class ExportToExcel extends HiddenGenericWebControl
-{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6184911435441697305L;
-	public static final String EXCEL = "excel";
-	public static final String CSV = "csv";
-	private List<DataColumn> columnsList = new ArrayList<DataColumn>();
-	public static String EXPORT_TO_EXCEL_ALL = "all";
-	public static String EXPORT_TO_EXCEL_DISPLAYED = "displayed";
-	public static String EXPORT_TO_EXCEL_SELECTED = "selected";
+public class ExportToExcel extends HiddenGenericWebControl {
+    public static final String EXCEL = "excel";
+    public static final String CSV = "csv";
+    /**
+     *
+     */
+    private static final long serialVersionUID = -6184911435441697305L;
+    public static String EXPORT_TO_EXCEL_ALL = "all";
+    public static String EXPORT_TO_EXCEL_DISPLAYED = "displayed";
+    public static String EXPORT_TO_EXCEL_SELECTED = "selected";
+    @JspxAttribute
+    public static String maxRows = "maxrows";
+    public static String rowsToExport = "rowstoexport";
+    @JspxAttribute
+    public static String fileType = "fileType";
+    protected static String filename = "filename";
+    protected static String command = "command";
+    @JspxAttribute
+    protected String target = "target";
+    private List<DataColumn> columnsList = new ArrayList<DataColumn>();
 
-	public ExportToExcel()
-	{
-		super(TagFactory.ExportToExcel);
-	}
+    public ExportToExcel() {
+        super(TagFactory.ExportToExcel);
+    }
 
-	/**
-	 * @param tagName
-	 * @param page
-	 */
-	public ExportToExcel(Page page)
-	{
-		super(TagFactory.ExportToExcel, page);
-	}
+    /**
+     * @param tagName
+     * @param page
+     */
+    public ExportToExcel(Page page) {
+        super(TagFactory.ExportToExcel, page);
+    }
 
-	protected static String filename = "filename";
+    public String getFileName() {
+        return getAttributeValue(filename);
+    }
 
-	public String getFileName()
-	{
-		return getAttributeValue(filename);
-	}
+    public void setFileName(String name) {
+        setAttributeValue(filename, name);
+    }
 
-	public void setFileName(String name)
-	{
-		setAttributeValue(filename, name);
-	}
+    public String getcommand() {
+        return getAttributeValue(command);
+    }
 
-	protected static String command = "command";
+    public void setCommand(String commandName) {
+        setAttributeValue(command, commandName);
+    }
 
-	public String getcommand()
-	{
-		return getAttributeValue(command);
-	}
+    public int getMaxRows() {
+        String rows = getAttributeValue(maxRows);
+        return StringUtility.isNullOrEmpty(rows) ? Integer.MAX_VALUE : Integer.parseInt(rows);
+    }
 
-	public void setCommand(String commandName)
-	{
-		setAttributeValue(command, commandName);
-	}
+    public void setMaxRows(int maxRowsValue) {
+        setAttributeValue(maxRows, "" + maxRowsValue);
+    }
 
-	@JspxAttribute
-	public static String maxRows = "maxrows";
+    public String getRowsToExport() {
 
-	public int getMaxRows()
-	{
-		String rows = getAttributeValue(maxRows);
-		return StringUtility.isNullOrEmpty(rows) ? Integer.MAX_VALUE : Integer.parseInt(rows);
-	}
+        String export = getAttributeValue(rowsToExport);
 
-	public void setMaxRows(int maxRowsValue)
-	{
-		setAttributeValue(maxRows, "" + maxRowsValue);
-	}
+        return StringUtility.isNullOrEmpty(export) ? EXPORT_TO_EXCEL_DISPLAYED : export;
+    }
 
-	public static String rowsToExport = "rowstoexport";
+    public void setRowsToExport(String rowsToExportText) {
+        setAttributeValue(rowsToExport, rowsToExportText);
+    }
 
-	public String getRowsToExport()
-	{
+    public void addControl(WebControl control) {
+        super.addControl(control);
+        if (control instanceof DataColumn)
+            getColumns().add((DataColumn) control);
+    }
 
-		String export = getAttributeValue(rowsToExport);
+    public List<DataColumn> getColumns() {
+        return columnsList;
+    }
 
-		return StringUtility.isNullOrEmpty(export) ? EXPORT_TO_EXCEL_DISPLAYED : export;
-	}
+    public void setColumns(List<DataColumn> columns) {
+        this.columnsList = columns;
+    }
 
-	public void setRowsToExport(String rowsToExportText)
-	{
-		setAttributeValue(rowsToExport, rowsToExportText);
-	}
+    /**
+     * overridden to clone members that are not attributes.
+     */
+    public WebControl clone(WebControl parent, Page page, ISubmitter submitter, IAjaxSubmitter ajaxSubmitter) {
+        ExportToExcel exportToExcelControl = (ExportToExcel) super.clone(parent, page, submitter, ajaxSubmitter);
+        for (WebControl control : exportToExcelControl.controls) {
+            if (control instanceof DataColumn)
+                exportToExcelControl.columnsList.add((DataColumn) control);
+        }
+        return exportToExcelControl;
+    }
 
-	public void addControl(WebControl control)
-	{
-		super.addControl(control);
-		if (control instanceof DataColumn)
-			getColumns().add((DataColumn) control);
-	}
+    public String getTarget() {
+        return getAttributeValue(target);
+    }
 
-	public void setColumns(List<DataColumn> columns)
-	{
-		this.columnsList = columns;
-	}
+    public void setTarget(String targetValue) {
+        setAttributeValue(target, targetValue);
+    }
 
-	public List<DataColumn> getColumns()
-	{
-		return columnsList;
-	}
+    public String getFileType() {
+        String f = getAttributeValue(fileType);
+        return StringUtility.isNullOrEmpty(f) ? EXCEL : f;
+    }
 
-	/**
-	 * overridden to clone members that are not attributes.
-	 */
-	public WebControl clone(WebControl parent, Page page, ISubmitter submitter, IAjaxSubmitter ajaxSubmitter)
-	{
-		ExportToExcel exportToExcelControl = (ExportToExcel) super.clone(parent, page, submitter, ajaxSubmitter);
-		for (WebControl control : exportToExcelControl.controls)
-		{
-			if (control instanceof DataColumn)
-				exportToExcelControl.columnsList.add((DataColumn) control);
-		}
-		return exportToExcelControl;
-	}
-
-	@JspxAttribute
-	protected String target = "target";
-
-	public String getTarget()
-	{
-		return getAttributeValue(target);
-	}
-
-	public void setTarget(String targetValue)
-	{
-		setAttributeValue(target, targetValue);
-	}
-
-	@JspxAttribute
-	public static String fileType = "fileType";
-
-	public String getFileType()
-	{
-		String f = getAttributeValue(fileType);
-		return StringUtility.isNullOrEmpty(f) ? EXCEL : f;
-	}
-
-	public void setFileType(String FileType)
-	{
-		setAttributeValue(fileType, FileType);
-	}
+    public void setFileType(String FileType) {
+        setAttributeValue(fileType, FileType);
+    }
 
 }

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package eg.java.net.web.jspx.engine.annotation;
 
@@ -15,7 +15,6 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface JspxWebControl
-{
-	String name() default "";
+public @interface JspxWebControl {
+    String name() default "";
 }

@@ -11,114 +11,97 @@ import eg.java.net.web.jspx.ui.controls.html.elements.markers.ValueHolder;
 import eg.java.net.web.jspx.ui.controls.html.w3.Script;
 
 /**
- * 
  * Star Rating.
+ *
  * @author amr.eladawy
  * May 22, 2012 9:54:33 AM
  */
-public class Rate extends GenericWebControl implements ValueHolder
-{
+public class Rate extends GenericWebControl implements ValueHolder {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4888298883127142530L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 4888298883127142530L;
+    @JspxAttribute
+    protected static String onServerClickKey = "onServerClick";
+    @JspxAttribute
+    protected static String commandArgs = "commandargs";
+    @JspxAttribute
+    private final String readonly = "readonly";
+    private String valueBinding;
 
-	public Rate()
-	{
-		super(TagFactory.Rate);
-		isContentControl = false;
-	}
+    public Rate() {
+        super(TagFactory.Rate);
+        isContentControl = false;
+    }
 
-	public void render(RenderPrinter outputStream) throws Exception
-	{
-		if (!isRendered() || !isAccessible())
-			return;
+    public void render(RenderPrinter outputStream) throws Exception {
+        if (!isRendered() || !isAccessible())
+            return;
 
-		GenericWebControl panel = new GenericWebControl(TagFactory.Span, page);
-		panel.setId(getId() + "RateDiv");
-		panel.render(outputStream);
+        GenericWebControl panel = new GenericWebControl(TagFactory.Span, page);
+        panel.setId(getId() + "RateDiv");
+        panel.render(outputStream);
 
-		Script script = new Script(page);
+        Script script = new Script(page);
 
-		StringBuilder js = new StringBuilder("$jspx('#").append(panel.getId()).append("').raty({path:'").append(page.request.getContextPath())
-				.append(ResourceHandler.ResourcePrefix).append("imgs/rate").append("',scoreName:'").append(getId()).append("'");
-		if (!StringUtility.isNullOrEmpty(getValue()))
-			js.append(",score:").append(getValue());
-		if (getReadonly())
-			js.append(",readOnly:true");
+        StringBuilder js = new StringBuilder("$jspx('#").append(panel.getId()).append("').raty({path:'").append(page.request.getContextPath())
+                .append(ResourceHandler.ResourcePrefix).append("imgs/rate").append("',scoreName:'").append(getId()).append("'");
+        if (!StringUtility.isNullOrEmpty(getValue()))
+            js.append(",score:").append(getValue());
+        if (getReadonly())
+            js.append(",readOnly:true");
 
-		if (!StringUtility.isNullOrEmpty(getOnServerClick()))
-			js.append(",click: function(score, evt) {")
-					.append(Render.composeAction(getId(), getOnServerClick(), getCommandArgs(), "", false, "", false, false, getMySubmitter(),
-							getMyAjaxSubmitter())).append("}");
-		js.append("});");
+        if (!StringUtility.isNullOrEmpty(getOnServerClick()))
+            js.append(",click: function(score, evt) {")
+                    .append(Render.composeAction(getId(), getOnServerClick(), getCommandArgs(), "", false, "", false, false, getMySubmitter(),
+                            getMyAjaxSubmitter())).append("}");
+        js.append("});");
 
-		script.setScriptCode(js.toString());
+        script.setScriptCode(js.toString());
 
-		script.render(outputStream);
+        script.render(outputStream);
 
-	}
+    }
 
-	@JspxAttribute
-	protected static String onServerClickKey = "onServerClick";
+    public String getOnServerClick() {
+        return getAttributeValue(onServerClickKey);
+    }
 
-	public String getOnServerClick()
-	{
-		return getAttributeValue(onServerClickKey);
-	}
+    public void setOnServerClick(String onClick) {
+        setAttributeValue(onServerClickKey, onClick);
+    }
 
-	public void setOnServerClick(String onClick)
-	{
-		setAttributeValue(onServerClickKey, onClick);
-	}
+    public String getCommandArgs() {
+        return getAttributeValue(commandArgs);
+    }
 
-	@JspxAttribute
-	protected static String commandArgs = "commandargs";
+    public void setCommandArgs(String commandArgsValue) {
+        setAttributeValue(commandArgs, commandArgsValue);
+    }
 
-	public String getCommandArgs()
-	{
-		return getAttributeValue(commandArgs);
-	}
+    public boolean getReadonly() {
+        return !StringUtility.isNullOrEmpty(getAttributeValue(readonly));
+    }
 
-	public void setCommandArgs(String commandArgsValue)
-	{
-		setAttributeValue(commandArgs, commandArgsValue);
-	}
+    public void setReadonly(boolean Readonly) {
+        setAttributeValue(readonly, Readonly ? "readonly" : "");
+    }
 
-	@JspxAttribute
-	private String readonly = "readonly";
+    public String getValue() {
+        return getAttributeValue(Input.value);
+    }
 
-	public void setReadonly(boolean Readonly)
-	{
-		setAttributeValue(readonly, Readonly ? "readonly" : "");
-	}
+    public void setValue(String valueString) {
+        setAttributeValue(Input.value, valueString);
+    }
 
-	public boolean getReadonly()
-	{
-		return !StringUtility.isNullOrEmpty(getAttributeValue(readonly));
-	}
+    public String getValueBinding() {
+        return Input.calculateValueBinding(valueBinding, getAttribute(Input.value));
+    }
 
-	public void setValue(String valueString)
-	{
-		setAttributeValue(Input.value, valueString);
-	}
-
-	public String getValue()
-	{
-		return getAttributeValue(Input.value);
-	}
-
-	private String valueBinding;
-
-	public String getValueBinding()
-	{
-		return Input.calculateValueBinding(valueBinding, getAttribute(Input.value));
-	}
-
-	public void setValueBinding(String valueBinding)
-	{
-		this.valueBinding = valueBinding;
-	}
+    public void setValueBinding(String valueBinding) {
+        this.valueBinding = valueBinding;
+    }
 
 }

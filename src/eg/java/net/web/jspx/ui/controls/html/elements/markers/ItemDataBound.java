@@ -1,8 +1,7 @@
 package eg.java.net.web.jspx.ui.controls.html.elements.markers;
 
-public interface ItemDataBound
-{
-	public void dataBind();
+public interface ItemDataBound {
+    void dataBind();
 
-	public void reverseBinding();
+    void reverseBinding();
 }

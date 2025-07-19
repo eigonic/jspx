@@ -4,44 +4,42 @@ import java.util.List;
 
 /**
  * MXBean interface for JSPX Administration.
- * 
+ *
  * @author amr.eladawy
- * 
  */
-public interface JspxAdminMBean
-{
-	public void clearAllChachedPages();
+public interface JspxAdminMBean {
+    void clearAllChachedPages();
 
-	public void removeChachedPage(String pageName);
+    void removeChachedPage(String pageName);
 
-	public List<String> getCachedPages();
+    List<String> getCachedPages();
 
-	public List<String> getCachedMasterPages();
+    List<String> getCachedMasterPages();
 
-	public String getCharSet();
+    String getCharSet();
 
-	public void setCharSet(String charset);
+    void setCharSet(String charset);
 
-	public String getJspxVersion();
+    String getJspxVersion();
 
-	public boolean isJEXL();
+    boolean isJEXL();
 
-	public void setUseJEXL(boolean themeTwitter);
+    void setUseJEXL(boolean themeTwitter);
 
-	public boolean isThemeTwitter();
+    boolean isThemeTwitter();
 
-	public void setThemeTwitter(boolean themeTwitter);
+    void setThemeTwitter(boolean themeTwitter);
 
-	public boolean isShowSQL();
+    boolean isShowSQL();
 
-	public void setShowSQL(boolean showSql);
+    void setShowSQL(boolean showSql);
 
-	public void setJspxBeanExpirationMinutes(int time);
+    int getJspxBeanExpirationMinutes();
 
-	public int getJspxBeanExpirationMinutes();
+    void setJspxBeanExpirationMinutes(int time);
 
-	public void setJspFilesPathe(String path);
+    String getJspFilesPathe();
 
-	public String getJspFilesPathe();
+    void setJspFilesPathe(String path);
 
 }

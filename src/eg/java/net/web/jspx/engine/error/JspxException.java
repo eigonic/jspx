@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package eg.java.net.web.jspx.engine.error;
 
@@ -8,45 +8,40 @@ package eg.java.net.web.jspx.engine.error;
  * @author amr.eladawy
  *
  */
-public class JspxException extends RuntimeException
-{
+public class JspxException extends RuntimeException {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8308740827970495021L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = -8308740827970495021L;
 
-	public JspxException()
-	{
+    public JspxException() {
 
-	}
+    }
 
-	/**
-	 * @param message
-	 */
-	public JspxException(String message)
-	{
-		super(message);
+    /**
+     * @param message
+     */
+    public JspxException(String message) {
+        super(message);
 
-	}
+    }
 
-	/**
-	 * @param cause
-	 */
-	public JspxException(Throwable cause)
-	{
-		super(cause);
+    /**
+     * @param cause
+     */
+    public JspxException(Throwable cause) {
+        super(cause);
 
-	}
+    }
 
-	/**
-	 * @param message
-	 * @param cause
-	 */
-	public JspxException(String message, Throwable cause)
-	{
-		super(message, cause);
+    /**
+     * @param message
+     * @param cause
+     */
+    public JspxException(String message, Throwable cause) {
+        super(message, cause);
 
-	}
+    }
 
 }

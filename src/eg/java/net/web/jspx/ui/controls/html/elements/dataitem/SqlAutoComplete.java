@@ -1,13 +1,7 @@
 /**
- * 
+ *
  */
 package eg.java.net.web.jspx.ui.controls.html.elements.dataitem;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import eg.java.net.web.jspx.engine.data.DAO;
 import eg.java.net.web.jspx.engine.error.JspxException;
@@ -20,124 +14,110 @@ import eg.java.net.web.jspx.ui.controls.html.elements.hidden.HiddenGenericWebCon
 import eg.java.net.web.jspx.ui.controls.html.elements.markers.IAjaxSubmitter;
 import eg.java.net.web.jspx.ui.controls.html.elements.markers.ISubmitter;
 import eg.java.net.web.jspx.ui.pages.Page;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Amr.ElAdawy
  *
  */
-public class SqlAutoComplete extends HiddenGenericWebControl
-{
-	private static final long serialVersionUID = 3178121943601626300L;
-	private static final Logger logger = LoggerFactory.getLogger(SqlAutoComplete.class);
+public class SqlAutoComplete extends HiddenGenericWebControl {
+    private static final long serialVersionUID = 3178121943601626300L;
+    private static final Logger logger = LoggerFactory.getLogger(SqlAutoComplete.class);
+    @JspxAttribute
+    protected static String dataSource = "datasource";
+    protected List<DataParam> parameters = new ArrayList<DataParam>();
+    @JspxAttribute
+    protected String sql = "sql";
+    @JspxAttribute
+    protected String parameter = "parameter";
+    @JspxAttribute
+    protected String caseSensitiveKey = "casesensitive";
 
-	protected List<DataParam> parameters = new ArrayList<DataParam>();
+    /**
+     * @param tagName
+     */
+    public SqlAutoComplete() {
+        super(TagFactory.SqlAutoComplete);
+    }
 
-	/**
-	 * @param tagName
-	 */
-	public SqlAutoComplete()
-	{
-		super(TagFactory.SqlAutoComplete);
-	}
+    /**
+     * @param tagName
+     * @param page
+     */
+    public SqlAutoComplete(Page page) {
+        super(TagFactory.SqlAutoComplete, page);
+    }
 
-	/**
-	 * @param tagName
-	 * @param page
-	 */
-	public SqlAutoComplete(Page page)
-	{
-		super(TagFactory.SqlAutoComplete, page);
-	}
+    public String getDataSource() {
+        return getAttributeValue(dataSource);
+    }
 
-	@JspxAttribute
-	protected static String dataSource = "datasource";
+    public void setDataSource(String dataSourceVal) {
+        setAttributeValue(dataSource, dataSourceVal);
+    }
 
-	public void setDataSource(String dataSourceVal)
-	{
-		setAttributeValue(dataSource, dataSourceVal);
-	}
+    public String getSql() {
+        return getAttributeValue(sql);
+    }
 
-	public String getDataSource()
-	{
-		return getAttributeValue(dataSource);
-	}
+    public void setSql(String sqlValue) {
+        setAttributeValue(sql, sqlValue);
+    }
 
-	@JspxAttribute
-	protected String sql = "sql";
+    public String getParameter() {
+        return getAttributeValue(parameter);
+    }
 
-	public String getSql()
-	{
-		return getAttributeValue(sql);
-	}
+    public void setParameter(String parameterValue) {
+        setAttributeValue(parameter, parameterValue);
+    }
 
-	public void setSql(String sqlValue)
-	{
-		setAttributeValue(sql, sqlValue);
-	}
+    public boolean getCaseSensitive() {
+        return getAttributeBooleanValue(caseSensitiveKey);
+    }
 
-	@JspxAttribute
-	protected String parameter = "parameter";
+    public void setCaseSenstive(boolean caseSenstive) {
+        setAttributeBooleanValue(caseSensitiveKey, caseSenstive);
+    }
 
-	public String getParameter()
-	{
-		return getAttributeValue(parameter);
-	}
+    public WebControl clone(WebControl parent, Page page, ISubmitter submitter, IAjaxSubmitter ajaxSubmitter) {
+        SqlAutoComplete thisControl = (SqlAutoComplete) super.clone(parent, page, submitter, ajaxSubmitter);
+        for (WebControl control : thisControl.controls)
+            if (control instanceof DataParam)
+                thisControl.parameters.add((DataParam) control);
+        return thisControl;
+    }
 
-	public void setParameter(String parameterValue)
-	{
-		setAttributeValue(parameter, parameterValue);
-	}
+    /**
+     * gets the list of data based on the given search key
+     *
+     * @return
+     */
+    public List<Object> getData(String paramValue) {
+        String sanitizedParamValue = SqlUtility.encodeForSQL(paramValue);
+        logger.debug("ParamValue converted from [" + paramValue + "] to [" + sanitizedParamValue + "]");
+        if (StringUtility.isNullOrEmpty(getDataSource()))
+            throw new JspxException("The datasource attribute cannot be null in the SqlAutoComplete [" + this.getId() + "]");
+        String sql = getSql();
+        if (StringUtility.isNullOrEmpty(sql))
+            throw new JspxException("The sql attribute cannot be null in the SqlAutoComplete [" + this.getId() + "]");
+        for (DataParam param : parameters)
+            sql = param.formatSql(sql, getCaseSensitive());
+        String name = getParameter();
+        if (StringUtility.isNullOrEmpty(name))
+            name = "?";
 
-	@JspxAttribute
-	protected String caseSensitiveKey = "casesensitive";
+        if (!sql.toLowerCase().contains(name.toLowerCase())) {
+            logger.error("sql [" + sql + "] does not contain the name [" + name + "]");
+            throw new JspxException("SqlAutoComplete [" + getId() + "] has the sql statement [" + sql + "] that does not contain the parameter ["
+                    + name + "] Please make sure of the parameter exists and matches case");
+        }
+        sql = sql.replace(name, paramValue);
 
-	public boolean getCaseSensitive()
-	{
-		return getAttributeBooleanValue(caseSensitiveKey);
-	}
-
-	public void setCaseSenstive(boolean caseSenstive)
-	{
-		setAttributeBooleanValue(caseSensitiveKey, caseSenstive);
-	}
-
-	public WebControl clone(WebControl parent, Page page, ISubmitter submitter, IAjaxSubmitter ajaxSubmitter)
-	{
-		SqlAutoComplete thisControl = (SqlAutoComplete) super.clone(parent, page, submitter, ajaxSubmitter);
-		for (WebControl control : thisControl.controls)
-			if (control instanceof DataParam)
-				thisControl.parameters.add((DataParam) control);
-		return thisControl;
-	}
-
-	/**
-	 * gets the list of data based on the given search key
-	 * 
-	 * @return
-	 */
-	public List<Object> getData(String paramValue)
-	{
-		String sanitizedParamValue = SqlUtility.encodeForSQL(paramValue);
-		logger.debug("ParamValue converted from [" + paramValue + "] to [" + sanitizedParamValue + "]");
-		if (StringUtility.isNullOrEmpty(getDataSource()))
-			throw new JspxException("The datasource attribute cannot be null in the SqlAutoComplete [" + this.getId() + "]");
-		String sql = getSql();
-		if (StringUtility.isNullOrEmpty(sql))
-			throw new JspxException("The sql attribute cannot be null in the SqlAutoComplete [" + this.getId() + "]");
-		for (DataParam param : parameters)
-			sql = param.formatSql(sql, getCaseSensitive());
-		String name = getParameter();
-		if (StringUtility.isNullOrEmpty(name))
-			name = "?";
-
-		if (!sql.toLowerCase().contains(name.toLowerCase()))
-		{
-			logger.error("sql [" + sql + "] does not contain the name [" + name + "]");
-			throw new JspxException("SqlAutoComplete [" + getId() + "] has the sql statement [" + sql + "] that does not contain the parameter ["
-					+ name + "] Please make sure of the parameter exists and matches case");
-		}
-		sql = sql.replace(name, paramValue);
-
-		return DAO.getAutoCompleteList(getDataSource(), sql);
-	}
+        return DAO.getAutoCompleteList(getDataSource(), sql);
+    }
 }

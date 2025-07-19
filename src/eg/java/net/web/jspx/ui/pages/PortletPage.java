@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package eg.java.net.web.jspx.ui.pages;
 
@@ -9,11 +9,9 @@ package eg.java.net.web.jspx.ui.pages;
  * @author amr.eladawy
  *
  */
-public class PortletPage extends Page
-{
-	@Override
-	public void renderContent()
-	{
-		super.renderContent();
-	}
+public class PortletPage extends Page {
+    @Override
+    public void renderContent() {
+        super.renderContent();
+    }
 }
