@@ -31,7 +31,7 @@ public class MAO {
         try {
             String fieldName;
             Field[] fields = null;
-            if (list.size() > 0) {
+            if (!list.isEmpty()) {
                 Class<?> aClass = list.get(0).getClass();
                 fields = aClass.getDeclaredFields();
             }

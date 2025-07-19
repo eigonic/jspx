@@ -114,7 +114,7 @@ public class TextArea extends GenericWebControl implements ValueHolder {
     }
 
     protected StringLiteral getContentControl() {
-        if (controls.size() > 0) {
+        if (!controls.isEmpty()) {
             // [Jun 23, 2011 3:31:31 PM] [amr.eladawy] [now the the text area may contain white spaces controls, neglect them]
             for (WebControl control : controls)
                 if (control instanceof StringLiteral)

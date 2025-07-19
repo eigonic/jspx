@@ -409,7 +409,7 @@ public class XmlParser extends AbstractXmlParser
 
 			String attrName = readName();
 
-			if (attrName.length() == 0)
+			if (attrName.isEmpty())
 				throw new DefaultParserException("illegal char / attr", null);
 
 			skipWhitespace();

@@ -174,7 +174,7 @@ public class DBBean extends HiddenGenericWebControl implements InternalValueHold
                 logger.debug("dataBind() - {}",
                         this.getId() + " - Data retrieved in [" + (System.currentTimeMillis() - t) + "] ms, count[" + rows.size() + "], sql:" + sql);
             }
-            if (rows.size() > 0) {
+            if (!rows.isEmpty()) {
                 bean = (Hashtable<String, DataField>) rows.get(0);
             } else {
                 bean = new Hashtable<String, DataField>();

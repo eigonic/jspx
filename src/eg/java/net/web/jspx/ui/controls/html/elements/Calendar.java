@@ -138,6 +138,11 @@ public class Calendar extends GenericWebControl implements ValueHolder {
         box.setValue(getValue());
         box.setNoSystemCss(true);
         box.render(outputStream);
+        String script = getScript();
+        page.addOnloadScript(script);
+    }
+
+    private String getScript() {
         String mode = "datepicker";
         if (getDateFormat().toLowerCase().contains("hh"))
             mode = "datetimepicker";
@@ -149,7 +154,7 @@ public class Calendar extends GenericWebControl implements ValueHolder {
         String script = "$('#" + getId() + "'" + document + ")." + mode +
                 "({changeYear: true,showOtherMonths: true,showSecond: true,timeFormat: 'hh:mm:ss',showWeek: " + getShowWeek() +
                 ",selectOtherMonths: true,dateFormat:'dd/mm/yy'});";
-        page.addOnloadScript(script);
+        return script;
     }
 
     protected String getScriptDateFormat() {

@@ -29,7 +29,7 @@ public class StartTag extends Tag
 
 		super(Xml.START_TAG, parent, namespace, name);
 
-		this.attributes = (attributes == null || attributes.size() == 0) ? null : attributes;
+		this.attributes = (attributes == null || attributes.isEmpty()) ? null : attributes;
 
 		this.degenerated = degenerated;
 
@@ -122,7 +122,7 @@ public class StartTag extends Tag
 
 		if (this.namespace == null)
 		{
-			if (prefix.length() != 0)
+			if (!prefix.isEmpty())
 				throw new RuntimeException("undefined prefix: " + prefix + " in " + prefixMap + " at " + this);
 			this.namespace = Xml.NO_NAMESPACE;
 		}

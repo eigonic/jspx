@@ -612,7 +612,7 @@ public abstract class Table extends HiddenGenericWebControl implements InternalV
         outputStream.write(Render.newLine);
 
         List<DataColumn> groupByCols = getGroupByColumn();
-        if (groupByCols.size() > 0 && !isOrganized()) {
+        if (!groupByCols.isEmpty() && !isOrganized()) {
             rows = reOrganizeRows(groupByCols);
             setOrganized(true);
         }
@@ -682,7 +682,7 @@ public abstract class Table extends HiddenGenericWebControl implements InternalV
                 groupByExpr.append(col.getColumnValue().toString()).append(",");
             }
             if (headers.add(groupByExpr.toString())) {
-                if (i != 0 && totals.size() > 0) {
+                if (i != 0 && !totals.isEmpty()) {
                     Hashtable<String, DataField> totalRow = new Hashtable<String, DataField>();
                     Set<DataColumn> cols = totals.keySet();
                     for (DataColumn col : cols) {
@@ -693,7 +693,7 @@ public abstract class Table extends HiddenGenericWebControl implements InternalV
                         totals.put(col, 0d);
                     }
                 }
-                if (totals.size() > 0) {
+                if (!totals.isEmpty()) {
                     Set<DataColumn> cols = totals.keySet();
                     for (DataColumn col : cols) {
                         col.setRow(getRowToRender(i));
@@ -710,7 +710,7 @@ public abstract class Table extends HiddenGenericWebControl implements InternalV
                 organizedRows.add(row);
                 organizedRows.add(getRowToRender(i));
             } else {
-                if (totals.size() > 0) {
+                if (!totals.isEmpty()) {
                     Set<DataColumn> cols = totals.keySet();
                     for (DataColumn col : cols) {
                         col.setRow(getRowToRender(i));
@@ -744,7 +744,7 @@ public abstract class Table extends HiddenGenericWebControl implements InternalV
      * @return
      */
     protected String composeEventArgs(Hashtable<String, DataField> row) {
-        if (pks.size() > 0) {
+        if (!pks.isEmpty()) {
             String keyname = pks.get(0).getName().toLowerCase();
             DataField df = row.get(keyname);
             if (df != null) {
@@ -1051,7 +1051,7 @@ public abstract class Table extends HiddenGenericWebControl implements InternalV
         } else if (ExportToExcel.EXPORT_TO_EXCEL_SELECTED.equalsIgnoreCase(exportToExcelControl.getRowsToExport())) {
             // [Jul 26, 2009 9:14:45 AM] [amr.eladawy] [if there is no selected rows, then export all rows]
             rowsToBeExported = getSelectedRows();
-            if (rowsToBeExported == null || rowsToBeExported.size() == 0) {
+            if (rowsToBeExported == null || rowsToBeExported.isEmpty()) {
                 if (this instanceof ListTable)
                     rowsToBeExported = ((ListTable) this).getList();
                 else if (this instanceof DataTable)
@@ -1071,7 +1071,7 @@ public abstract class Table extends HiddenGenericWebControl implements InternalV
             page.skip();
 
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("Failed to return Excel doc",ex);
         }
         setStatus(DoneState);
     }
@@ -1160,7 +1160,7 @@ public abstract class Table extends HiddenGenericWebControl implements InternalV
             String contText = eventArgs.substring(0, index);
             String dir = eventArgs.substring(index + InternalValueHolder.nameSplitter.length());
             // [Jan 17, 2013 10:57:58 PM] [Amr.ElAdawy] [support auto generated columns]
-            if (columns.size() == 0) {
+            if (columns.isEmpty()) {
                 DataColumn column = new DataColumn();
                 column.setFieldName(contText);
                 column.setSortDirection(dir.trim());
@@ -1368,7 +1368,7 @@ public abstract class Table extends HiddenGenericWebControl implements InternalV
         footer.setParent(this);
         footer.setPage(page);
         // if empty results, render message and New command
-        if (rows == null || rows.size() == 0) {
+        if (rows == null || rows.isEmpty()) {
             if (StringUtility.isNullOrEmpty(getNoResults())) {
                 rows = createEmptyRows();
                 renderTableParts(outputStream);
@@ -1536,7 +1536,7 @@ public abstract class Table extends HiddenGenericWebControl implements InternalV
                 writeAllRowsToCsv(toCsv, fields, exportToExcelControl, out);
             } else if (ExportToExcel.EXPORT_TO_EXCEL_SELECTED.equalsIgnoreCase(exportToExcelControl.getRowsToExport())) {
                 List<Integer> list = getSelectedIndices();
-                if (list == null || list.size() == 0) {
+                if (list == null || list.isEmpty()) {
                     writeAllRowsToCsv(toCsv, fields, exportToExcelControl, out);
                 } else {
                     writeRowsToFile(toCsv, getSelectedRows(), fields, out);
@@ -1546,7 +1546,7 @@ public abstract class Table extends HiddenGenericWebControl implements InternalV
             page.skip();
 
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("Failed to return CVS doc", ex);
         }
     }
 
@@ -1572,7 +1572,7 @@ public abstract class Table extends HiddenGenericWebControl implements InternalV
 
     protected List<DataColumn> extractHeadersAndFields(List<String> headers, ExportToExcel exportToExcelControl) {
         List<DataColumn> fields = new ArrayList<DataColumn>();
-        List<DataColumn> columnList = (exportToExcelControl.getColumns().size() > 0) ? exportToExcelControl.getColumns() : columns;
+        List<DataColumn> columnList = (!exportToExcelControl.getColumns().isEmpty()) ? exportToExcelControl.getColumns() : columns;
         for (DataColumn column : columnList) {
             // [Jul 24, 2013 1:38:06 PM] [amr.eladawy] [check the flag export on each column]
             if (column instanceof DataColumnCommand || !column.getExport())

@@ -93,7 +93,7 @@ public class HyperLink extends GenericWebControl {
 
     protected StringLiteral getContentControl() {
         StringLiteral literal = null;
-        if (controls.size() > 0) {
+        if (!controls.isEmpty()) {
             if (controls.get(0) instanceof StringLiteral)
                 literal = ((StringLiteral) controls.get(0));
         } else {

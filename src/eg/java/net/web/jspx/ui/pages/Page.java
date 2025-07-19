@@ -643,7 +643,7 @@ public class Page {
      * @param fileItem
      */
     protected void loadFile(FileUpload fileUpload, List<FileItem> fileItems) {
-        if (fileItems == null || fileItems.size() == 0)
+        if (fileItems == null || fileItems.isEmpty())
             return;
         FileItem fileItem = fileItems.get(0);
         // [Oct 22, 2009 5:44:00 PM] [Amr.ElAdawy] [setting the full name to the
@@ -826,7 +826,7 @@ public class Page {
                     ((MasterPage) this).getContentPage().renderActiveAjaxSubmitter(outputStream);
                     return;
                 }
-                if (((MasterPage) this).getContentPage().portletPages.size() > 0) {
+                if (!((MasterPage) this).getContentPage().portletPages.isEmpty()) {
                     for (PortletPage portletPage : ((MasterPage) this).getContentPage().portletPages)
                         if (portletPage.isAjaxPostBack) {
                             portletPage.renderActiveAjaxSubmitter(outputStream);
@@ -834,7 +834,7 @@ public class Page {
                         }
                 }
             }
-            if (portletPages.size() > 0) {
+            if (!portletPages.isEmpty()) {
                 for (PortletPage portletPage : portletPages)
                     if (portletPage.isAjaxPostBack) {
                         portletPage.renderActiveAjaxSubmitter(outputStream);
@@ -915,7 +915,7 @@ public class Page {
      * @author amr.eladawy May 28, 2012 6:54:24 PM
      */
     private void renderMessages(RenderPrinter outputStream) throws Exception {
-        if (messages.size() == 0)
+        if (messages.isEmpty())
             return;
         StringBuffer sb = new StringBuffer();
         for (Iterator<JspxMessage> mi = messages.iterator(); mi.hasNext(); ) {
@@ -937,7 +937,7 @@ public class Page {
      * @author amr.eladawy May 28, 2012 6:54:24 PM
      */
     private void renderClientMethods(RenderPrinter outputStream) throws Exception {
-        if (clientMethods.size() == 0)
+        if (clientMethods.isEmpty())
             return;
         StringBuffer sb = new StringBuffer();
         for (Iterator<String> cm = clientMethods.iterator(); cm.hasNext(); ) {

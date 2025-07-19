@@ -132,7 +132,7 @@ public class DataTable extends Table {
                 if (nextPage)
                     rows.remove(size);
                 totalCount = countList.get(0);
-                if (columns.size() == 0 && rows.size() != 0) {
+                if (columns.isEmpty() && !rows.isEmpty()) {
                     // [Jan 17, 2013 8:29:51 PM] [Amr.ElAdawy] [auto generate columns]
                     logger.info("No columns are defined in the datatable. auto generating based on the returned resultset");
                     generateColumns();
@@ -381,7 +381,7 @@ public class DataTable extends Table {
         setStatus(ViewState);
         if (!isActionAllowed(DeleteState))
             logger.error("User is trying to Delete Record while deleting is not allowed.");
-        else if (pks.size() > 0) {
+        else if (!pks.isEmpty()) {
             try {
                 String deleteStatement = "delete from " + getTableName() + getWhereString(eventArgs);
                 // [Jun 23, 2011 3:52:44 PM] [amr.eladawy] [before delete call the listener]
@@ -602,7 +602,7 @@ public class DataTable extends Table {
     protected String getWhereString(String eventArgs) {
         StringBuffer buffer = new StringBuffer(" where 1=1 ");
         String[] args = eventArgs.split(pkSplitter);
-        if (pks.size() > 0) {
+        if (!pks.isEmpty()) {
             DataPK pk = null;
             for (int i = 0; i < pks.size(); i++) {
                 pk = pks.get(i);
@@ -616,7 +616,7 @@ public class DataTable extends Table {
 
     @SuppressWarnings("unchecked")
     public Hashtable<String, DataField> getRow(int rowIndex) {
-        if (rows.size() < 1)
+        if (rows.isEmpty())
             dataBind();
 
         return (Hashtable<String, DataField>) rows.get(rowIndex);
@@ -731,7 +731,7 @@ public class DataTable extends Table {
     @SuppressWarnings("unchecked")
     @Override
     public List<Object> getSelectedRows() {
-        if (this.rows.size() < 1)
+        if (this.rows.isEmpty())
             dataBind();
         List<Object> rowsReturned = new ArrayList<Object>();
         if (isSelectedAll()) {
@@ -789,21 +789,26 @@ public class DataTable extends Table {
             orderedHeaders.put(field.getIndex(), field);
         }
         for (DataField field : orderedHeaders.values()) {
-            DataColumn column = new DataColumn();
-            column.setFieldName(field.getOriginalName());
-            column.setName(field.getName());
-            column.setText(field.getName());
-            column.setPage(page);
-            column.setParent(this);
-            column.setSortable(true);
-
-            if (sortingColumn != null && sortingColumn.getFieldName().equals(column.getFieldName())) {
-                // [Jan 18, 2013 12:53:22 AM] [Amr.ElAdawy] [set this column as sorting column]
-                column.setSortDirection(sortingColumn.getSortDirection());
-            }
+            DataColumn column = getDataColumn(field);
 
             columns.add(column);
         }
+    }
+
+    private DataColumn getDataColumn(DataField field) {
+        DataColumn column = new DataColumn();
+        column.setFieldName(field.getOriginalName());
+        column.setName(field.getName());
+        column.setText(field.getName());
+        column.setPage(page);
+        column.setParent(this);
+        column.setSortable(true);
+
+        if (sortingColumn != null && sortingColumn.getFieldName().equals(column.getFieldName())) {
+            // [Jan 18, 2013 12:53:22 AM] [Amr.ElAdawy] [set this column as sorting column]
+            column.setSortDirection(sortingColumn.getSortDirection());
+        }
+        return column;
     }
 
     @Override

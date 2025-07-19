@@ -42,7 +42,7 @@ public class ObjectToCSV {
     }
 
     private void initDfMap(List<DataColumn> dataColumns) {
-        if (dfMap.size() == 0) {
+        if (dfMap.isEmpty()) {
             for (DataColumn d : dataColumns) {
                 dfMap.put(d.getFieldName(), new SimpleDateFormat(d.getDateFormat()));
             }
@@ -54,7 +54,7 @@ public class ObjectToCSV {
     }
 
     public void initRowCache(int size) {
-        if (rowCache.size() == 0) {
+        if (rowCache.isEmpty()) {
             for (int j = 0; j < size; j++) {
                 rowCache.put(j, new ArrayList<String>());
             }

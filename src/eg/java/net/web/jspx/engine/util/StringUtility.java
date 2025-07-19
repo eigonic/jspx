@@ -67,7 +67,7 @@ public class StringUtility {
      * @return
      */
     public static String join(List<String> strs, String joiner) {
-        if (strs == null || strs.size() == 0)
+        if (strs == null || strs.isEmpty())
             return "";
         StringBuilder buffer = new StringBuilder(strs.get(0));
         for (int i = 1; i < strs.size(); i++)
@@ -76,7 +76,7 @@ public class StringUtility {
     }
 
     public static String join(HashMap<String, String> hashMap, String outerJoiner, String innerJoiner) {
-        if (hashMap == null || hashMap.size() == 0)
+        if (hashMap == null || hashMap.isEmpty())
             return "";
         Iterator<String> i = hashMap.keySet().iterator();
         String key = i.next();
@@ -121,7 +121,7 @@ public class StringUtility {
 
     public static String join(HashMap<String, HashMap<String, String>> hashMap, String mostOuterJoiner, String innerJoiner, String outerJoiner,
                               String mostInnerJoiner) {
-        if (hashMap == null || hashMap.size() == 0)
+        if (hashMap == null || hashMap.isEmpty())
             return "";
         Iterator<String> i = hashMap.keySet().iterator();
         String key = i.next();

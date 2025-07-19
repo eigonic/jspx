@@ -434,7 +434,7 @@ public class GenericWebControl extends WebControl {
 
     @Override
     public void saveViewState(HashMap<String, HashMap<String, String>> viewState) {
-        if (this.viewstate.size() > 0)
+        if (!this.viewstate.isEmpty())
             viewState.put(getId(), this.viewstate);
     }
 

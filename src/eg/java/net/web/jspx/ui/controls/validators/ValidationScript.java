@@ -34,7 +34,7 @@ public class ValidationScript extends Script {
      */
     @Override
     public void render(RenderPrinter outputStream) throws Exception {
-        if (controls.size() > 0) {
+        if (!controls.isEmpty()) {
             Script script = new Script();
             // script.setSrc(ResourceHandler.ResourcePrefix + ResourceUtility.ValidationScript);
             script.setPage(page);

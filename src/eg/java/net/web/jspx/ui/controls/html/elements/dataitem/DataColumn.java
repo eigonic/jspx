@@ -238,7 +238,7 @@ public class DataColumn extends HiddenGenericWebControl {
             Table table = (Table) parent;
             // [Apr 7, 2009 12:49:04 PM] [amr.eladawy] if it has item Template render it
             // [Apr 3, 2011 4:37:58 PM] [amr.eladawy] [loop till you find the item template]
-            if (controls != null && controls.size() > 0) {
+            if (controls != null && !controls.isEmpty()) {
                 for (WebControl control : controls) {
                     if (control instanceof ItemTemplate) {
                         // set the request with the current row.
@@ -346,12 +346,7 @@ public class DataColumn extends HiddenGenericWebControl {
                 } else {
                     outputStream.write(finalVal);
                     if (trimed) {
-                        String modalId = getId() + InternalValueHolder.nameSplitter + "LongTextModal";
-                        String scriptPop = "$jspx('#" + modalId + " .modal-body > pre').html('"
-                                + longText.replace("\"", "&quot;").replace("'", "\\'").replace("<", "&lt;").replace(">", "&gt;") + "');$jspx('#"
-                                + modalId + "').modal('show');";
-                        String showModalButton = " <button type=\"button\" onclick=\"" + scriptPop
-                                + "\" class=\"btn btn-info jspx_long_text_trimed\">...</button>";
+                        String showModalButton = getButton(longText);
                         outputStream.write(showModalButton);
                     }
                 }
@@ -363,6 +358,16 @@ public class DataColumn extends HiddenGenericWebControl {
         } catch (Exception e) {
             logger.error("render(outputStream=" + outputStream + ")", e);
         }
+    }
+
+    private String getButton(String longText) {
+        String modalId = getId() + InternalValueHolder.nameSplitter + "LongTextModal";
+        String scriptPop = "$jspx('#" + modalId + " .modal-body > pre').html('"
+                + longText.replace("\"", "&quot;").replace("'", "\\'").replace("<", "&lt;").replace(">", "&gt;") + "');$jspx('#"
+                + modalId + "').modal('show');";
+        String showModalButton = " <button type=\"button\" onclick=\"" + scriptPop
+                + "\" class=\"btn btn-info jspx_long_text_trimed\">...</button>";
+        return showModalButton;
     }
 
     public Object getColumnValue() {

@@ -151,22 +151,27 @@ public class DataLookup extends HiddenGenericWebControl {
             value = elements.get(key);
         if (value == null) {
             String where = " WHERE " + getKey() + "='" + key + "'   ";
-            String sqlString = getSql().toLowerCase();
-            // if there is no SQL, construct one
-            String finalString = "";
-            if (StringUtility.isNullOrEmpty(sqlString)) {
-                finalString = "SELECT " + getValue() + " FROM  " + getTableName() + where;
-            } else {
-                // use the SQL
-                // [Jun 7, 2009 12:02:54 PM] [amr.eladawy] if the developer provided a sql then wrap it with the select * from ()
-                // to be easily used.
-                finalString = "select * from (" + sqlString + ") lutemp" + where;
-
-            }
+            String finalString = getSqlString(where);
             loadDataSource();
             value = DAO.lookup(getDataSource(), finalString, key, getValue()).toString();
         }
         return value;
+    }
+
+    private String getSqlString(String where) {
+        String sqlString = getSql().toLowerCase();
+        // if there is no SQL, construct one
+        String finalString = "";
+        if (StringUtility.isNullOrEmpty(sqlString)) {
+            finalString = "SELECT " + getValue() + " FROM  " + getTableName() + where;
+        } else {
+            // use the SQL
+            // [Jun 7, 2009 12:02:54 PM] [amr.eladawy] if the developer provided a sql then wrap it with the select * from ()
+            // to be easily used.
+            finalString = "select * from (" + sqlString + ") lutemp" + where;
+
+        }
+        return finalString;
     }
 
     protected void loadDataSource() {

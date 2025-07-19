@@ -70,21 +70,26 @@ public class TextBox extends Input {
             l.setId(getId() + "_label");
             l.render(outputStream);
 
-            String document = "";
-            if (page != null && page.isAjaxPostBack && page.isMultiPartForm)
-                document = ",window.parent.document";
-
-            String script = "$('#" + getId() + "_label'" + document +
-                    ").livequery('click',function (){$(this).hide();\n $('#" + getId() +
-                    "').show().focus().attr('value',jQuery.trim($(this).text()));});\n$('#" + getId() + "'" + document +
-                    ").livequery('blur',function (){$(this).hide();\n $('#" + getId() +
-                    "_label').show().html($(this).attr('value')==''?'&nbsp;&nbsp;&nbsp;':$(this).attr('value'));});";
+            String script = getScript();
             page.addOnloadScript(script);
         } else {
             if (RequestHandler.THEME_TWITTER && !noSystemCss)
                 setCssClass(getCssClass() + " input-medium");
         }
         super.render(outputStream);
+    }
+
+    private String getScript() {
+        String document = "";
+        if (page != null && page.isAjaxPostBack && page.isMultiPartForm)
+            document = ",window.parent.document";
+
+        String script = "$('#" + getId() + "_label'" + document +
+                ").livequery('click',function (){$(this).hide();\n $('#" + getId() +
+                "').show().focus().attr('value',jQuery.trim($(this).text()));});\n$('#" + getId() + "'" + document +
+                ").livequery('blur',function (){$(this).hide();\n $('#" + getId() +
+                "_label').show().html($(this).attr('value')==''?'&nbsp;&nbsp;&nbsp;':$(this).attr('value'));});";
+        return script;
     }
 
     @Override

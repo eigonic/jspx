@@ -51,7 +51,7 @@ public class ObjectToExcel {
 
     public <T> void addRows(List<T> list, List<DataColumn> fieldNames) {
         // [Feb 19, 2015 2:15:22 PM] [aeladawy] [check for empty headers]
-        if (fieldNames == null || fieldNames.size() == 0) {
+        if (fieldNames == null || fieldNames.isEmpty()) {
             HSSFRow row = sheet.createRow(0);
             if (!list.isEmpty()) {
                 T o = list.get(0);

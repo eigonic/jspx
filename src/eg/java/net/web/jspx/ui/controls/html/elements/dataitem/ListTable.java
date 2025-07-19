@@ -83,7 +83,7 @@ public class ListTable extends Table {
             int index = getPageIndex();
             int size = getPageSize();
             // [Jun 29, 2009 1:29:44 PM] [Amr.ElAdawy] [if the items are empty, get the items form page]
-            if (!isDirty || itemsList == null || itemsList.size() == 0)
+            if (!isDirty || itemsList == null || itemsList.isEmpty())
                 initializeList();
 
             //added by bakry Mar 6, 2015 to filter the list based on data-params
@@ -463,7 +463,7 @@ public class ListTable extends Table {
     }
 
     public Object getRow(int rowIndex) {
-        if (itemsList.size() < 1)
+        if (itemsList.isEmpty())
             dataBind();
         return itemsList.get(rowIndex);
     }

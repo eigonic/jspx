@@ -50,7 +50,7 @@ public class StringLiteralContainer extends GenericWebControl {
 
     protected StringLiteral getContentControl() {
         StringLiteral literal = null;
-        if (controls.size() > 0)
+        if (!controls.isEmpty())
             literal = ((StringLiteral) controls.get(0));
         else {
             literal = new StringLiteral("");

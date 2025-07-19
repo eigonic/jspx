@@ -185,15 +185,7 @@ public class DataColumnCommand extends DataColumn {
         outputStream.write(Render.endTag);
 
         if (getType().equalsIgnoreCase(Check)) {
-            CheckBox box = new CheckBox();
-            box.setCssClass(getCssClass());
-            box.setId(parent.getId() + InternalValueHolder.nameSplitter + SelectAll);
-            box.setText(getText());
-            // [Nov 18, 2009 11:29:44 AM] [Amr.ElAdawy] [if the select type is check then make it check not select]
-            if ("check".equalsIgnoreCase(getSelectType()))
-                box.setAttributeValue("onclick", "checkAll('" + parent.getId() + InternalValueHolder.nameSplitter + "',this)");
-            else
-                box.setAttributeValue("onclick", "selectAll('" + parent.getId() + InternalValueHolder.nameSplitter + "',this)");
+            CheckBox box = getCheckBox();
             box.render(outputStream);
             Label label = new Label(page);
             label.setText(getText());
@@ -204,6 +196,19 @@ public class DataColumnCommand extends DataColumn {
 
         Render.renderTagEnd(outputStream, TagFactory.TableHead);
         outputStream.write(Render.newLine);
+    }
+
+    private CheckBox getCheckBox() {
+        CheckBox box = new CheckBox();
+        box.setCssClass(getCssClass());
+        box.setId(parent.getId() + InternalValueHolder.nameSplitter + SelectAll);
+        box.setText(getText());
+        // [Nov 18, 2009 11:29:44 AM] [Amr.ElAdawy] [if the select type is check then make it check not select]
+        if ("check".equalsIgnoreCase(getSelectType()))
+            box.setAttributeValue("onclick", "checkAll('" + parent.getId() + InternalValueHolder.nameSplitter + "',this)");
+        else
+            box.setAttributeValue("onclick", "selectAll('" + parent.getId() + InternalValueHolder.nameSplitter + "',this)");
+        return box;
     }
 
     public String getTarget() {

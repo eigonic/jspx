@@ -61,7 +61,7 @@ public class CancelField extends HiddenGenericWebControl {
         // in order to invoke the internal action  Save]
         Table parentTable = ((Table) page.carriage.get(PageCarriage.CURRENT_INTERNAL_VALUE_HOLDER));
 
-        if (controls.size() == 0) {
+        if (controls.isEmpty()) {
             // [Sep 5, 2009 5:41:15 PM] [amr.eladawy] [there is no template, rendering default.]
             Render.renderCommand(outputStream, Table.CANCEL_EVENT, "", "Cancel", null, true, true, null, null, false, page, parentTable.getId(),
                     parentTable);

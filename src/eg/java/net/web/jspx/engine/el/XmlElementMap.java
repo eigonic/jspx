@@ -50,7 +50,7 @@ public class XmlElementMap extends HashMap<String, Object> {
     }
 
     public Object getValue() {
-        return elements.size() == 0 ? elements : value;
+        return elements.isEmpty() ? elements : value;
     }
 
     public void setValue(Object value) {

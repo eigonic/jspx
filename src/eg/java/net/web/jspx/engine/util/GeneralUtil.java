@@ -35,8 +35,7 @@ public class GeneralUtil {
             ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(bos.toByteArray()));
             obj = in.readObject();
         } catch (Throwable e) {
-            e.printStackTrace();
-            throw new RuntimeException("Can't copy the obj [" + orig + "], error: " + e);
+            throw new RuntimeException("Can't copy the obj [" + orig + "], error: " + e,e);
         }
         return obj;
     }
