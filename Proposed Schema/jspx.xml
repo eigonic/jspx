@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page controller="pageController" master="pageMaster" title="pageTitle"
+	accessType="pageAccessKey">
+	<html>
+		<head id="" name="" class="" rendered="">
+			<script src=""></script>
+		</head>
+		<body>
+			<contentHolder id="contentHolderId">
+				<JspInclude file=""/>
+				<resourceBundle id="resourceBundleId" base="resourceBundleBase"
+					charset="utf-8"/>
+
+				<form action="formAction" method="formMethod" id="" name=""
+					class="" rendered="">
+					<calender value="calenderValue" dateFormat="calenderDateFormat"
+						id="calenderId"/>
+
+					<capatcha value="captchaValue" secKey="captchaSecKey" type="captchaType"
+						id="" name="" class="" rendered="" message="captchaMessageKey"
+						length="captchaLength" group="captchaGroup" messagestyle="captchaMessageStyle"/>
+
+					<a href="linkUrl" id="" name="" class="" rendered="">
+					</a>
+
+					<img src="imageSource" id="" name="" class="" rendered=""/>
+
+					<input type="inputType" value="inputValue" confirm=""
+						submitonce="true" onClick="" onServerClick=""
+						id="" name="" class="" rendered="" group=""/>
+					<input type="inputType" value="inputValue" confirm=""
+						submitonce="false" onClick="" onServerClick=""
+						id="" name="" class="" rendered="" group=""/>
+					<validator id="" indicator="" message_style="" indicator_style="" name="" class="" rendered="" type="required" control_to_validate="" group="" message="" ></validator>
+					<validator id="" indicator="" message_style="" indicator_style="" name="" class="" rendered="" type="email" control_to_validate="" group="" message="" ></validator>
+					<validator id="" indicator="" message_style="" indicator_style="" name="" class="" rendered="" type="range" control_to_validate="" group="" message="" minval="" maxval=""></validator>
+					<validator id="" indicator="" message_style="" indicator_style="" name="" class="" rendered="" type="numeric" control_to_validate="" group="" message="" length="" maxdigits="" mindigits="" ></validator>
+					<validator id="" indicator="" message_style="" indicator_style="" name="" class="" rendered="" type="msisdn" control_to_validate="" group="" message="" allowinternational=""></validator>
+					<validator id="" indicator="" message_style="" indicator_style="" name="" class="" rendered="" type="length" maxlength="" minlength="" control_to_validate="" group="" message="" ></validator>
+
+					<label id="" name="" class="" rendered="">
+					</label>
+
+					<link href="linkUrl" id="" name="" class="" rendered=""/>
+
+					<linkCommand confirmation="linkCommandConfirmation"
+						onClick="onClick" onServerClick="onServerClick" text="linkCommandText"
+						id="" name="" class="" rendered="">
+					</linkCommand>
+
+					<div id="" name="" class="" rendered="">
+					</div>
+
+					<placeHolder id="" name="" class="" rendered="">
+					</placeHolder>
+
+					<radiobuttongroup id="" name="" class="" rendered="">
+					</radiobuttongroup>
+
+					<dataTable id="" name="" class="" datasource=""
+						pagesize="" showrowindex="" pageindex=""
+						selectedRowClass="" selectedRowStyle="" showNew="" panelStatus=""
+						rowClass="" rowStyle="" headerStyle="" headerClass=""
+						noResultMessage="" pageSize="" pageIndex="" tdClass="" dateformat=""
+						autoBind="" rendered="" noresults="" noresultsclass="" table=""
+						sql="" bindtoclass="" navigationmode="">
+
+						<datacolumn text="" fieldname="" type="" required="" id=""
+							name="" class="" rendered="">
+						</datacolumn>
+
+						<datacolumnCommand text="" type="" action="" id=""
+							name="" class="" rendered="">
+						</datacolumnCommand>
+
+						<footer message="" class="" newcommandtext=""
+							prevcommandtext="" nextcommandtext="" firstcommandtext=""
+							lastcommandtext="" exportToExcelText="" id="" name="" rendered="" />
+
+					</dataTable>
+
+					<listtable id="" name="" rendered="" tdclass="" noresults=""
+						noresultsclass="" items="" autobind="" class="" headerclass=""
+						rowclass="" selectedrowclass="" bindtoclass="" showrowindex="">
+
+						<datacolumn id="" name="" class="" rendered="" text=""
+							fieldname="" type="" listlookup="" lookupText="" lookupValue=""
+							required="">
+						</datacolumn>
+
+						<datacolumnCommand id="" name="" class=""
+							rendered="" text="" confirm="" type="">
+						</datacolumnCommand>
+
+						<datalookup datasource="" sql="" key="" value="" />
+						<footer id="" name="" class="" rendered="" newCommandText=""
+							message="">
+						</footer>
+					</listtable>
+
+					<datamodel modelObject="" modelClass="" id="" name=""
+						class="" rendered="">
+					</datamodel>
+
+					<repeater itemlist="" var="" changeid="" id="" name=""
+						class="" rendered="">
+					</repeater>
+
+					<select size="" id="" name="" class="" rendered="">
+						<option id="" name="" class="" rendered="" value=""
+							selected=""></option>
+						<datalookup datasource="" sql="" key="" value="" />
+					</select>
+					<textarea readonly="" rows="" cols="">
+					</textarea>
+				</form>
+			</contentHolder>
+		</body>
+	</html>
+</page>

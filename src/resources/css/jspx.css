@@ -1,0 +1,175 @@
+.jspxError {
+	background-color: #FFBABA;
+	color: #D8000C;
+	border-color: #D8000C;
+	-moz-border-radius: 3px 3px 3px 3px;
+	border: 1px solid;
+	min-width: 100px;
+	min-height: 24px;
+	text-align: left;
+	vertical-align: middle;
+	margin-left: 10px;
+	white-space: normal;
+}
+
+.jspxInfo {
+	background-color: #BDE5F8;
+	color: #00529B;
+	border-color: #00529B;
+	-moz-border-radius: 3px 3px 3px 3px;
+	font-style: italic;
+	border: 1px solid;
+	min-width: 100px;
+	min-height: 24px;
+	text-align: left;
+	vertical-align: middle;
+	margin-left: 10px;
+	white-space: normal;
+}
+
+.jspxSuccess {
+	color: #468847;
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
+	-moz-border-radius: 3px 3px 3px 3px;
+	font-style: italic;
+	border: 1px solid;
+	min-width: 100px;
+	min-height: 24px;
+	text-align: left;
+	vertical-align: middle;
+	margin-left: 10px;
+	white-space: normal;
+}
+
+.jspxDefault {
+	background-color: #000;
+	margin-left: 10px;
+}
+
+.jspxWarning {
+	background-color: #FFFFA3;
+	color: #9F5001;
+	border-color: #9F5001;
+	-moz-border-radius: 3px 3px 3px 3px;
+	font-style: italic;
+	border: 1px solid;
+	min-width: 100px;
+	min-height: 24px;
+	text-align: left;
+	vertical-align: middle;
+	margin-left: 10px;
+	white-space: normal;
+}
+
+/**
+*/
+#pagination-jspx ul {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+}
+
+#pagination-jspx li {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	list-style: none;
+	float: left;
+	display: block;
+}
+
+#pagination-jspx .jspxActivePage {
+	color: #ff0084;
+	font-weight: bold;
+	padding: 1px 3px;
+}
+
+#pagination-jspx a {
+	border: solid 1px #DDDDDD;
+	margin-right: 2px;
+	font-size: 10px;
+}
+
+#pagination-jspx .previous-off, #pagination-jspx .next-off {
+	color: #666666;
+	display: block;
+	float: left;
+	font-weight: bold;
+	padding: 3px 4px;
+}
+
+#pagination-jspx .next a, #pagination-jspx .previous a {
+	font-weight: bold;
+	border: solid 1px #FFFFFF;
+}
+
+#pagination-jspx a:link, #pagination-jspx a:visited {
+	/*color: #0063e3;*/
+	display: block;
+	float: left;
+	padding: 1px 3px;
+	text-decoration: none;
+}
+
+#pagination-jspx a:hover {
+	border: solid 1px #666666;
+}
+
+.jspxAutoCompleteLink {
+	text-decoration: none;
+}
+
+.jspxAutoCompleteLink:HOVER {
+	background-color: yellow;
+}
+
+.jspxAutoComplete {
+	background-color: white;
+	border-style: solid;
+	border-width: 1px;
+	position: absolute;
+	z-index: 100;
+}
+
+.jspx_ps {
+	width: 16px;
+	height: 14px;
+	background-image: url('../imgs/ps.png');
+	cursor: pointer;
+	background-repeat: no-repeat;
+}
+
+.jspx_ms {
+	width: 16px;
+	height: 14px;
+	background-image: url('../imgs/ms.png');
+	cursor: pointer;
+	background-repeat: no-repeat;
+}
+
+.jspxTableHover {
+	background: #FFFACD;
+}
+
+.jspxInline {
+	display: inline;
+}
+
+.jspxInline:hover {
+	background-color: #FFFFCC;
+	cursor: pointer;
+}
+
+.jspxLinkImage {
+	background-repeat: no-repeat;
+	text-decoration: none;
+	cursor: pointer;
+	border: none;
+}
+
+.jspxCCWidth {
+	min-width: 20px;
+}
