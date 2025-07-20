@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema attributeFormDefault="unqualified"
-	elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	version="2.0" targetNamespace="http://jspx-bay.sourceforge.net/jspx.xsd"
-	xmlns:tns1="http://jspx-bay.sourceforge.net/jspx.xsd">
+elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+version="2.1" targetNamespace="http://jspx-bay.sourceforge.net/jspx.xsd"
+xmlns:tns1="http://jspx-bay.sourceforge.net/jspx.xsd">
 
 	<xs:element name="page">
 		<xs:complexType>
@@ -126,39 +126,47 @@
 		</xs:complexType>
 	</xs:element>
 
-	<xs:element name="form">
-		<xs:complexType>
-			<xs:choice>
-				<xs:element ref="tns1:jspinclude" />
-				<xs:element ref="tns1:resourceBundle" />
-				<xs:element ref="tns1:ajaxPanel" />
-				<xs:element name="calender">
-					<xs:complexType>
-						<xs:attribute name="value" type="xs:dateTime" use="optional" />
-						<xs:attribute name="dateFormat" type="xs:string" use="optional" />
-						<xs:attribute name="id" type="xs:string" use="required" />
-						<xs:attribute name="navigate" type="tns1:CalendarNavigate" use="required" />
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="capatcha">
-					<xs:complexType>
-						<xs:attribute name="value" type="xs:string" use="optional" />
-						<xs:attribute name="secKey" type="xs:string" use="optional" />
-						<xs:attribute name="type" type="tns1:CaptchaTypes"
-							use="required" />
-						<xs:attribute name="id" type="xs:string" use="required" />
-						<xs:attribute name="name" type="xs:string" use="optional" />
-						<xs:attribute name="class" type="xs:string" use="optional" />
-						<xs:attribute name="allowedroles" type="xs:string"
-							use="optional" />
-						<xs:attribute name="rendered" type="xs:boolean" use="optional" />
-						<xs:attribute name="message" type="xs:string" use="optional" />
-						<xs:attribute name="length" type="xs:integer" use="optional" />
-						<xs:attribute name="group" type="xs:string" use="optional" />
-						<xs:attribute name="messagestyle" type="xs:string"
-							use="optional" />
-					</xs:complexType>
-				</xs:element>
+<xs:element name="form">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded">
+<xs:element ref="tns1:jspinclude" />
+<xs:element ref="tns1:resourceBundle" />
+<xs:element ref="tns1:ajaxPanel" />
+<xs:element ref="tns1:panel" />
+<xs:element ref="tns1:fieldSet" />
+<xs:element ref="tns1:autoComplete" />
+<xs:element ref="tns1:rate" />
+<xs:element ref="tns1:collapsePanel" />
+<xs:element name="calendar">
+<xs:complexType>
+<xs:attribute name="value" type="xs:dateTime" use="optional" />
+<xs:attribute name="dateFormat" type="xs:string" use="optional" />
+<xs:attribute name="id" type="xs:string" use="required" />
+<xs:attribute name="name" type="xs:string" use="optional" />
+<xs:attribute name="class" type="xs:string" use="optional" />
+<xs:attribute name="allowedroles" type="xs:string" use="optional" />
+<xs:attribute name="deniedroles" type="xs:string" use="optional" />
+<xs:attribute name="rendered" type="xs:boolean" use="optional" />
+<xs:attribute name="navigate" type="tns1:CalendarNavigate" use="optional" />
+</xs:complexType>
+</xs:element>
+<xs:element name="captcha">
+<xs:complexType>
+<xs:attribute name="value" type="xs:string" use="optional" />
+<xs:attribute name="secKey" type="xs:string" use="optional" />
+<xs:attribute name="type" type="tns1:CaptchaTypes" use="required" />
+<xs:attribute name="id" type="xs:string" use="required" />
+<xs:attribute name="name" type="xs:string" use="optional" />
+<xs:attribute name="class" type="xs:string" use="optional" />
+<xs:attribute name="allowedroles" type="xs:string" use="optional" />
+<xs:attribute name="deniedroles" type="xs:string" use="optional" />
+<xs:attribute name="rendered" type="xs:boolean" use="optional" />
+<xs:attribute name="message" type="xs:string" use="optional" />
+<xs:attribute name="length" type="xs:integer" use="optional" />
+<xs:attribute name="group" type="xs:string" use="optional" />
+<xs:attribute name="messageStyle" type="xs:string" use="optional" />
+</xs:complexType>
+</xs:element>
 				<xs:element name="a">
 					<xs:complexType>
 						<xs:simpleContent>
@@ -733,28 +741,132 @@
 			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:element name="footer">
-		<xs:complexType>
-			<xs:attribute name="message" type="xs:string" use="optional" />
-			<xs:attribute name="class" type="xs:string" use="optional" />
-			<xs:attribute name="newcommandtext" type="xs:string"
-				use="optional" />
-			<xs:attribute name="prevcommandtext" type="xs:string"
-				use="optional" />
-			<xs:attribute name="nextcommandtext" type="xs:string"
-				use="optional" />
-			<xs:attribute name="firstcommandtext" type="xs:string"
-				use="optional" />
-			<xs:attribute name="lastcommandtext" type="xs:string"
-				use="optional" />
-			<xs:attribute name="exportToExcelText" type="xs:string"
-				use="optional" />
-			<xs:attribute name="id" type="xs:string" use="optional" />
-			<xs:attribute name="name" type="xs:string" use="optional" />
-			<xs:attribute name="allowedroles" type="xs:string"
-				use="optional" />
-			<xs:attribute name="rendered" type="xs:boolean"
-				use="optional" />
-		</xs:complexType>
-	</xs:element>
+<xs:element name="footer">
+<xs:complexType>
+<xs:attribute name="message" type="xs:string" use="optional" />
+<xs:attribute name="class" type="xs:string" use="optional" />
+<xs:attribute name="newcommandtext" type="xs:string" use="optional" />
+<xs:attribute name="prevcommandtext" type="xs:string" use="optional" />
+<xs:attribute name="nextcommandtext" type="xs:string" use="optional" />
+<xs:attribute name="firstcommandtext" type="xs:string" use="optional" />
+<xs:attribute name="lastcommandtext" type="xs:string" use="optional" />
+<xs:attribute name="exportToExcelText" type="xs:string" use="optional" />
+<xs:attribute name="id" type="xs:string" use="optional" />
+<xs:attribute name="name" type="xs:string" use="optional" />
+<xs:attribute name="allowedroles" type="xs:string" use="optional" />
+<xs:attribute name="rendered" type="xs:boolean" use="optional" />
+</xs:complexType>
+</xs:element>
+
+<!-- Additional Controls Referenced but Not Yet Defined -->
+<xs:element name="panel">
+<xs:complexType>
+<xs:complexContent>
+<xs:extension base="xs:anyType">
+<xs:attribute name="id" type="xs:string" use="optional" />
+<xs:attribute name="name" type="xs:string" use="optional" />
+<xs:attribute name="class" type="xs:string" use="optional" />
+<xs:attribute name="allowedroles" type="xs:string" use="optional" />
+<xs:attribute name="deniedroles" type="xs:string" use="optional" />
+<xs:attribute name="rendered" type="xs:boolean" use="optional" />
+<xs:attribute name="style" type="xs:string" use="optional" />
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="fieldSet">
+<xs:complexType>
+<xs:complexContent>
+<xs:extension base="xs:anyType">
+<xs:attribute name="id" type="xs:string" use="optional" />
+<xs:attribute name="name" type="xs:string" use="optional" />
+<xs:attribute name="class" type="xs:string" use="optional" />
+<xs:attribute name="allowedroles" type="xs:string" use="optional" />
+<xs:attribute name="deniedroles" type="xs:string" use="optional" />
+<xs:attribute name="rendered" type="xs:boolean" use="optional" />
+<xs:attribute name="legend" type="xs:string" use="optional" />
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="autoComplete">
+<xs:complexType>
+<xs:attribute name="id" type="xs:string" use="required" />
+<xs:attribute name="name" type="xs:string" use="optional" />
+<xs:attribute name="class" type="xs:string" use="optional" />
+<xs:attribute name="allowedroles" type="xs:string" use="optional" />
+<xs:attribute name="deniedroles" type="xs:string" use="optional" />
+<xs:attribute name="rendered" type="xs:boolean" use="optional" />
+<xs:attribute name="value" type="xs:string" use="optional" />
+<xs:attribute name="datasource" type="xs:string" use="optional" />
+<xs:attribute name="sql" type="xs:string" use="optional" />
+<xs:attribute name="key" type="xs:string" use="optional" />
+<xs:attribute name="displayvalue" type="xs:string" use="optional" />
+<xs:attribute name="minlength" type="xs:int" use="optional" />
+</xs:complexType>
+</xs:element>
+
+<xs:element name="rate">
+<xs:complexType>
+<xs:attribute name="id" type="xs:string" use="required" />
+<xs:attribute name="name" type="xs:string" use="optional" />
+<xs:attribute name="class" type="xs:string" use="optional" />
+<xs:attribute name="allowedroles" type="xs:string" use="optional" />
+<xs:attribute name="deniedroles" type="xs:string" use="optional" />
+<xs:attribute name="rendered" type="xs:boolean" use="optional" />
+<xs:attribute name="value" type="xs:int" use="optional" />
+<xs:attribute name="max" type="xs:int" use="optional" />
+<xs:attribute name="readonly" type="xs:boolean" use="optional" />
+<xs:attribute name="half" type="xs:boolean" use="optional" />
+<xs:attribute name="cancel" type="xs:boolean" use="optional" />
+</xs:complexType>
+</xs:element>
+
+<xs:element name="collapsePanel">
+<xs:complexType>
+<xs:complexContent>
+<xs:extension base="xs:anyType">
+<xs:attribute name="id" type="xs:string" use="required" />
+<xs:attribute name="name" type="xs:string" use="optional" />
+<xs:attribute name="class" type="xs:string" use="optional" />
+<xs:attribute name="allowedroles" type="xs:string" use="optional" />
+<xs:attribute name="deniedroles" type="xs:string" use="optional" />
+<xs:attribute name="rendered" type="xs:boolean" use="optional" />
+<xs:attribute name="collapsed" type="xs:boolean" use="optional" />
+<xs:attribute name="title" type="xs:string" use="optional" />
+<xs:attribute name="titleClass" type="xs:string" use="optional" />
+<xs:attribute name="contentClass" type="xs:string" use="optional" />
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+</xs:element>
+
+<!-- Enhanced Input Types for JSPX 2.1 -->
+<xs:simpleType name="DataPKTypes">
+<xs:restriction base="xs:string">
+<xs:enumeration value="identity" />
+<xs:enumeration value="sequence" />
+<xs:enumeration value="sql" />
+<xs:enumeration value="trigger" />
+<xs:enumeration value="manual" />
+</xs:restriction>
+</xs:simpleType>
+
+<!-- Enhanced Data Column Types for JSPX 2.1 -->
+<xs:simpleType name="DataColumnTypesEnhanced">
+<xs:restriction base="xs:string">
+<xs:enumeration value="string" />
+<xs:enumeration value="varchar" />
+<xs:enumeration value="number" />
+<xs:enumeration value="date" />
+<xs:enumeration value="lookup" />
+<xs:enumeration value="boolean" />
+<xs:enumeration value="currency" />
+<xs:enumeration value="email" />
+<xs:enumeration value="url" />
+</xs:restriction>
+</xs:simpleType>
+
 </xs:schema>

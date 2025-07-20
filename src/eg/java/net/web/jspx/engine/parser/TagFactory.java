@@ -249,7 +249,6 @@ public class TagFactory {
      * @param tagName
      */
     public static void registerTagControl(Tag tag) {
-        if (externalControls.get(tag.getPrefix()) == null)
-            externalControls.put(tag.getPrefix(), tag);
+        externalControls.putIfAbsent(tag.getPrefix(), tag);
     }
 }

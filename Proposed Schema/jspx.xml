@@ -1,120 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page controller="pageController" master="pageMaster" title="pageTitle"
-	accessType="pageAccessKey">
-	<html>
-		<head id="" name="" class="" rendered="">
-			<script src=""></script>
-		</head>
-		<body>
-			<contentHolder id="contentHolderId">
-				<JspInclude file=""/>
-				<resourceBundle id="resourceBundleId" base="resourceBundleBase"
-					charset="utf-8"/>
+<page controller="pageController" master="pageMaster" title="pageTitle" accessType="pageAccessKey" 
+      allowedRoles="admin,user" deniedRoles="guest" contentType="text/html">
+<html>
+<head id="" name="" class="" rendered="" allowedRoles="" deniedRoles="">
+<script src=""></script>
+</head>
+<body>
+<contentHolder id="contentHolderId">
 
-				<form action="formAction" method="formMethod" id="" name=""
-					class="" rendered="">
-					<calender value="calenderValue" dateFormat="calenderDateFormat"
-						id="calenderId"/>
+<!-- JSP Integration -->
+<jspinclude file="/path/to/file.jsp"/>
 
-					<capatcha value="captchaValue" secKey="captchaSecKey" type="captchaType"
-						id="" name="" class="" rendered="" message="captchaMessageKey"
-						length="captchaLength" group="captchaGroup" messagestyle="captchaMessageStyle"/>
+<!-- Resource Bundle -->
+<resourceBundle id="resourceBundleId" base="resourceBundleBase" charset="utf-8"/>
 
-					<a href="linkUrl" id="" name="" class="" rendered="">
-					</a>
+<!-- Form Container -->
+<form action="formAction" method="post" enctype="multipart/form-data" 
+      id="" name="" class="" rendered="" allowedRoles="" deniedRoles="">
 
-					<img src="imageSource" id="" name="" class="" rendered=""/>
+<!-- Calendar Control -->
+<calendar value="calendarValue" dateFormat="dd/MM/yyyy" navigate="Serial"
+          id="calenderId" name="" class="" rendered="" allowedRoles="" deniedRoles=""/>
 
-					<input type="inputType" value="inputValue" confirm=""
-						submitonce="true" onClick="" onServerClick=""
-						id="" name="" class="" rendered="" group=""/>
-					<input type="inputType" value="inputValue" confirm=""
-						submitonce="false" onClick="" onServerClick=""
-						id="" name="" class="" rendered="" group=""/>
-					<validator id="" indicator="" message_style="" indicator_style="" name="" class="" rendered="" type="required" control_to_validate="" group="" message="" ></validator>
-					<validator id="" indicator="" message_style="" indicator_style="" name="" class="" rendered="" type="email" control_to_validate="" group="" message="" ></validator>
-					<validator id="" indicator="" message_style="" indicator_style="" name="" class="" rendered="" type="range" control_to_validate="" group="" message="" minval="" maxval=""></validator>
-					<validator id="" indicator="" message_style="" indicator_style="" name="" class="" rendered="" type="numeric" control_to_validate="" group="" message="" length="" maxdigits="" mindigits="" ></validator>
-					<validator id="" indicator="" message_style="" indicator_style="" name="" class="" rendered="" type="msisdn" control_to_validate="" group="" message="" allowinternational=""></validator>
-					<validator id="" indicator="" message_style="" indicator_style="" name="" class="" rendered="" type="length" maxlength="" minlength="" control_to_validate="" group="" message="" ></validator>
+<!-- CAPTCHA Control -->
+<captcha value="captchaValue" secKey="captchaSecKey" type="Numeric" length="5"
+         id="" name="" class="" rendered="" allowedRoles="" deniedRoles=""
+         message="captchaMessageKey" group="captchaGroup" messageStyle="captchaMessageStyle"/>
 
-					<label id="" name="" class="" rendered="">
-					</label>
+<!-- Hyperlink -->
+<a href="linkUrl" id="" name="" class="" rendered="" allowedRoles="" deniedRoles="">Link Text</a>
 
-					<link href="linkUrl" id="" name="" class="" rendered=""/>
+<!-- Image -->
+<img src="imageSource" id="" name="" class="" rendered="" allowedRoles="" deniedRoles=""/>
 
-					<linkCommand confirmation="linkCommandConfirmation"
-						onClick="onClick" onServerClick="onServerClick" text="linkCommandText"
-						id="" name="" class="" rendered="">
-					</linkCommand>
+<!-- Input Controls -->
+<input type="text" value="inputValue" runtimevalue="" confirm="" mask="" commandargs=""
+       submitonce="true" postnormal="false" onClick="" onServerClick=""
+       id="" name="" class="" rendered="" allowedRoles="" deniedRoles="" group=""/>
 
-					<div id="" name="" class="" rendered="">
-					</div>
+<input type="hidden" value="hiddenValue" id="" name="" class="" rendered=""/>
+<input type="checkbox" value="checkboxValue" id="" name="" class="" rendered="" group=""/>
+<input type="radio" value="radioValue" id="" name="" class="" rendered="" group=""/>
+<input type="submit" value="Submit" id="" name="" class="" rendered="" group=""/>
+<input type="file" id="" name="" class="" rendered=""/>
+<input type="button" value="Button" id="" name="" class="" rendered="" group=""/>
+<input type="password" value="" id="" name="" class="" rendered=""/>
 
-					<placeHolder id="" name="" class="" rendered="">
-					</placeHolder>
+<!-- Validators -->
+<validator id="" indicator="" message_style="" indicator_style="" name="" class="" 
+           rendered="" allowedRoles="" deniedRoles="" showindicator="true"
+           type="required" control_to_validate="" group="" message=""/>
 
-					<radiobuttongroup id="" name="" class="" rendered="">
-					</radiobuttongroup>
+<validator id="" indicator="" message_style="" indicator_style="" name="" class=""
+           rendered="" allowedRoles="" deniedRoles="" showindicator="true"
+           type="email" control_to_validate="" group="" message=""/>
 
-					<dataTable id="" name="" class="" datasource=""
-						pagesize="" showrowindex="" pageindex=""
-						selectedRowClass="" selectedRowStyle="" showNew="" panelStatus=""
-						rowClass="" rowStyle="" headerStyle="" headerClass=""
-						noResultMessage="" pageSize="" pageIndex="" tdClass="" dateformat=""
-						autoBind="" rendered="" noresults="" noresultsclass="" table=""
-						sql="" bindtoclass="" navigationmode="">
+<validator id="" indicator="" message_style="" indicator_style="" name="" class=""
+           rendered="" allowedRoles="" deniedRoles="" showindicator="true"
+           type="range" control_to_validate="" group="" message="" minval="" maxval=""/>
 
-						<datacolumn text="" fieldname="" type="" required="" id=""
-							name="" class="" rendered="">
-						</datacolumn>
+<validator id="" indicator="" message_style="" indicator_style="" name="" class=""
+           rendered="" allowedRoles="" deniedRoles="" showindicator="true"
+           type="numeric" control_to_validate="" group="" message="" 
+           length="" maxdigits="" mindigits=""/>
 
-						<datacolumnCommand text="" type="" action="" id=""
-							name="" class="" rendered="">
-						</datacolumnCommand>
+<validator id="" indicator="" message_style="" indicator_style="" name="" class=""
+           rendered="" allowedRoles="" deniedRoles="" showindicator="true"
+           type="msisdn" control_to_validate="" group="" message="" allowinternational=""/>
 
-						<footer message="" class="" newcommandtext=""
-							prevcommandtext="" nextcommandtext="" firstcommandtext=""
-							lastcommandtext="" exportToExcelText="" id="" name="" rendered="" />
+<validator id="" indicator="" message_style="" indicator_style="" name="" class=""
+           rendered="" allowedRoles="" deniedRoles="" showindicator="true"
+           type="length" maxlength="" minlength="" control_to_validate="" group="" message=""/>
 
-					</dataTable>
+<validator id="" indicator="" message_style="" indicator_style="" name="" class=""
+           rendered="" allowedRoles="" deniedRoles="" showindicator="true"
+           type="custom" control_to_validate="" group="" message=""/>
 
-					<listtable id="" name="" rendered="" tdclass="" noresults=""
-						noresultsclass="" items="" autobind="" class="" headerclass=""
-						rowclass="" selectedrowclass="" bindtoclass="" showrowindex="">
+<!-- Label -->
+<label id="" name="" class="" rendered="" allowedRoles="" deniedRoles="" text="">Label Text</label>
 
-						<datacolumn id="" name="" class="" rendered="" text=""
-							fieldname="" type="" listlookup="" lookupText="" lookupValue=""
-							required="">
-						</datacolumn>
+<!-- Link Command -->
+<linkCommand confirmation="linkCommandConfirmation" onClick="onClick" onServerClick="onServerClick" 
+             text="linkCommandText" id="" name="" class="" rendered="" allowedRoles="" deniedRoles="">
+</linkCommand>
 
-						<datacolumnCommand id="" name="" class=""
-							rendered="" text="" confirm="" type="">
-						</datacolumnCommand>
+<!-- Panel/Div -->
+<panel id="" name="" class="" rendered="" allowedRoles="" deniedRoles=""></panel>
+<div id="" name="" class="" rendered="" allowedRoles="" deniedRoles=""></div>
 
-						<datalookup datasource="" sql="" key="" value="" />
-						<footer id="" name="" class="" rendered="" newCommandText=""
-							message="">
-						</footer>
-					</listtable>
+<!-- PlaceHolder -->
+<placeHolder id="" name="" class="" rendered="" allowedRoles="" deniedRoles=""></placeHolder>
 
-					<datamodel modelObject="" modelClass="" id="" name=""
-						class="" rendered="">
-					</datamodel>
+<!-- Radio Button Group -->
+<radioButtonGroup id="" name="" class="" rendered="" allowedRoles="" deniedRoles=""></radioButtonGroup>
 
-					<repeater itemlist="" var="" changeid="" id="" name=""
-						class="" rendered="">
-					</repeater>
+<!-- AJAX Panel -->
+<ajaxPanel id="" refreshtime="0" onrefresh="" onrender="" group="" action="" 
+           submitonce="false" commandargs="" class="" rendered="" allowedRoles="" deniedRoles="">
+    <ajaxLoading></ajaxLoading>
+</ajaxPanel>
 
-					<select size="" id="" name="" class="" rendered="">
-						<option id="" name="" class="" rendered="" value=""
-							selected=""></option>
-						<datalookup datasource="" sql="" key="" value="" />
-					</select>
-					<textarea readonly="" rows="" cols="">
-					</textarea>
-				</form>
-			</contentHolder>
-		</body>
-	</html>
+<!-- Auto Complete -->
+<autoComplete id="" name="" class="" rendered="" allowedRoles="" deniedRoles="" 
+              value="" datasource="" sql="" key="" displayvalue=""/>
+
+<!-- Data Table -->
+<dataTable id="" name="" class="" datasource="" table="" sql="" bindtoclass=""
+           pagesize="10" showrowindex="false" pageindex="1" navigationmode="paging"
+           selectedRowClass="" selectedRowStyle="" showNew="false" panelStatus=""
+           rowClass="" rowStyle="" headerStyle="" headerClass="" hoverClass=""
+           noResultMessage="" tdClass="" dateformat="dd/MM/yyyy" 
+           autoBind="true" rendered="" allowedRoles="" deniedRoles=""
+           noresults="" noresultsclass="" startrowindex="0" var="" casesensitive="false">
+
+    <!-- Data Primary Key -->
+    <dataPK name="id" type="identity" rendered="false" sql="" sequence="" defaultvalue=""/>
+
+    <!-- Data Parameters -->
+    <dataParam name="param1" control="controlId" expression="${bean.property}" 
+               request="requestParam" session="sessionAttr" value="staticValue"
+               allowedRoles="" deniedRoles="" rendered=""/>
+
+    <!-- Data Columns -->
+    <dataColumn text="Column Header" fieldname="columnName" type="string" export="true"
+                required="false" readonly="false" sortable="true" sortdir="asc"
+                dateformat="dd/MM/yyyy" hint="Column hint text" longtext="false" 
+                decimalformat="#,##0.00" customattribute=""
+                id="" name="" class="" rendered="" allowedRoles="" deniedRoles="">
+        <itemTemplate></itemTemplate>
+    </dataColumn>
+
+    <!-- Data Column Commands -->
+    <dataColumnCommand text="Edit" type="edit" action="editAction" confirm=""
+                       id="" name="" class="" rendered="" allowedRoles="" deniedRoles="">
+    </dataColumnCommand>
+
+    <!-- Data Lookup -->
+    <dataLookup datasource="" sql="" key="" value="" lazy="false"/>
+
+    <!-- Data Row Styling -->
+    <dataRow class="rowClass" style="color:red;"/>
+
+    <!-- Footer -->
+    <footer message="Showing {0} records" class="footerClass" 
+            newcommandtext="New" prevcommandtext="Previous" nextcommandtext="Next" 
+            firstcommandtext="First" lastcommandtext="Last" exportToExcelText="Export"
+            id="" name="" rendered="" allowedRoles="" deniedRoles=""/>
+
+</dataTable>
+
+<!-- List Table -->
+<listTable id="" name="" rendered="" allowedRoles="" deniedRoles=""
+           tdclass="" noresults="No records found" noresultsclass=""
+           items="${listBean}" autobind="true" class="" headerclass=""
+           rowclass="" selectedrowclass="" bindtoclass="" showrowindex="false"
+           startrowindex="0" hoverClass="">
+
+    <!-- List Table Columns -->
+    <dataColumn id="" name="" class="" rendered="" allowedRoles="" deniedRoles=""
+                text="Header" fieldname="propertyName" type="string" sortable="true"
+                listlookup="" lookupText="" lookupValue="" required="false">
+    </dataColumn>
+
+    <!-- List Table Commands -->
+    <dataColumnCommand id="" name="" class="" rendered="" allowedRoles="" deniedRoles=""
+                       text="Action" confirm="Are you sure?" type="custom">
+    </dataColumnCommand>
+
+    <!-- Data Lookup -->
+    <dataLookup datasource="" sql="" key="" value=""/>
+
+    <!-- Footer -->
+    <footer id="" name="" class="" rendered="" allowedRoles="" deniedRoles=""
+            newCommandText="Add New" message="Total: {0} items">
+    </footer>
+</listTable>
+
+<!-- Data Model -->
+<dataModel modelObject="${bean}" modelClass="com.example.Bean"
+           id="" name="" class="" rendered="" allowedRoles="" deniedRoles="">
+</dataModel>
+
+<!-- Repeater -->
+<repeater itemlist="${items}" var="item" changeid="true"
+          id="" name="" class="" rendered="" allowedRoles="" deniedRoles="">
+    <itemTemplate>
+        <div>${item.property}</div>
+    </itemTemplate>
+</repeater>
+
+<!-- Select/DropDown -->
+<select size="1" multiple="false" id="" name="" class="" rendered="" 
+        allowedRoles="" deniedRoles="" casesensitive="false">
+    <option id="" name="" class="" rendered="" allowedRoles="" deniedRoles="" 
+            value="optionValue" selected="false">Option Text</option>
+    <dataLookup datasource="" sql="" key="" value=""/>
+</select>
+
+<!-- Text Area -->
+<textArea readonly="false" rows="5" cols="50" id="" name="" class="" 
+          rendered="" allowedRoles="" deniedRoles="" value="">Default Text</textArea>
+
+<!-- Field Set -->
+<fieldSet id="" name="" class="" rendered="" allowedRoles="" deniedRoles=""
+          legend="Field Set Legend"></fieldSet>
+
+<!-- Rate Control -->
+<rate id="" name="" class="" rendered="" allowedRoles="" deniedRoles=""
+      value="0" max="5" readonly="false"/>
+
+<!-- Collapse Panel -->
+<collapsePanel id="" name="" class="" rendered="" allowedRoles="" deniedRoles=""
+               collapsed="false" title="Panel Title"></collapsePanel>
+
+</form>
+</contentHolder>
+</body>
+</html>
 </page>
